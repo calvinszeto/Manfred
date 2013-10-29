@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="ManfredTheme" parent="@android:style/Theme.Holo.Light">
+    <style name="ManfredTheme" parent="Theme.AppCompat.Light">
         <!-- Customize your theme here. -->
     </style>
 
