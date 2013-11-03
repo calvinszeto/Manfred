@@ -1,4 +1,5 @@
 <resources>
     <color name="background_blue">#bbcde3</color>
+    <color name="button_blue">#69B4FF</color>
     <color name="black">#000000</color>
 </resources>

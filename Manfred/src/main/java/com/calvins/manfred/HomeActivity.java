@@ -8,8 +8,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.util.Log;
 
 public class HomeActivity extends ActionBarActivity {
+
+    private static final String TAG = "HomeActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,4 +63,21 @@ public class HomeActivity extends ActionBarActivity {
         }
     }
 
+    /**
+     * On click responder to when play button is clicked.
+     * @param view
+     */
+    public void playButtonClicked(View view)
+    {
+        Log.d(TAG,"Play button clicked.");
+    }
+
+    /**
+     * On click responder to when settings button is clicked.
+     * @param view
+     */
+    public void settingsButtonClicked(View view)
+    {
+        Log.d(TAG,"Settings button clicked.");
+    }
 }

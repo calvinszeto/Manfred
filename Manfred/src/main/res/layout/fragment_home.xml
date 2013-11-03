@@ -17,4 +17,27 @@
         android:paddingTop="50dp"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent" />
+
+    <Button
+        android:layout_height="45dp"
+        android:layout_width="135dp"
+        android:gravity="center"
+        android:layout_marginTop="375dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/button_blue"
+        android:textColor="@color/black"
+        android:text="@string/home_play"
+        android:onClick="playButtonClicked"/>
+
+    <Button
+        android:layout_height="45dp"
+        android:layout_width="135dp"
+        android:gravity="center"
+        android:layout_marginTop="440dp"
+        android:layout_centerHorizontal="true"
+        android:background="@color/button_blue"
+        android:textColor="@color/black"
+        android:text="@string/home_settings"
+        android:onClick="settingsButtonClicked"/>
+
 </RelativeLayout>
