@@ -1,16 +1,14 @@
 package com.calvins.manfred;
 
-import android.support.v7.app.ActionBarActivity;
-import android.support.v4.app.Fragment;
+import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.util.Log;
+import android.content.Intent;
 
-public class HomeActivity extends ActionBarActivity {
+public class HomeActivity extends Activity {
 
     private static final String TAG = "HomeActivity";
 
@@ -18,12 +16,6 @@ public class HomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.container, new PlaceholderFragment())
-                    .commit();
-        }
     }
 
 
@@ -48,28 +40,15 @@ public class HomeActivity extends ActionBarActivity {
     }
 
     /**
-     * A placeholder fragment containing a simple view.
-     */
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment() {
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_home, container, false);
-            return rootView;
-        }
-    }
-
-    /**
      * On click responder to when play button is clicked.
      * @param view
      */
     public void playButtonClicked(View view)
     {
         Log.d(TAG,"Play button clicked.");
+        //Response to button click
+        Intent intent = new Intent(this, SavesScreenActivity.class);
+        startActivity(intent);
     }
 
     /**
