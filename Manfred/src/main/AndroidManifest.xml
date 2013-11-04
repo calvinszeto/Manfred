@@ -21,6 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".SavesScreenActivity"/>
+        <activity android:name=".ManfredActivity"/>
         <activity android:name="com.calvins.manfred.SettingsActivity"/>
     </application>
 

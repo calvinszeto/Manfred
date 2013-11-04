@@ -2,28 +2,26 @@ package com.calvins.manfred;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.util.Log;
 import android.content.Intent;
+import android.view.View;
+import android.util.Log;
 
-public class HomeActivity extends Activity {
+public class ManfredActivity extends Activity {
 
-    private static final String TAG = "HomeActivity";
+    private static final String TAG = "ManfredActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
+        setContentView(R.layout.activity_manfred);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        
+
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.home, menu);
         return true;
@@ -39,28 +37,5 @@ public class HomeActivity extends Activity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    /**
-     * On click responder to when play button is clicked.
-     * @param view
-     */
-    public void playButtonClicked(View view)
-    {
-        Log.d(TAG,"Play button clicked.");
-        //Response to button click
-        Intent intent = new Intent(this, SavesScreenActivity.class);
-        startActivity(intent);
-    }
-
-    /**
-     * On click responder to when settings button is clicked.
-     * @param view
-     */
-    public void settingsButtonClicked(View view)
-    {
-        Log.d(TAG,"Settings button clicked.");
-        Intent intent = new Intent(this, SettingsActivity.class);
-        startActivity(intent);
     }
 }
