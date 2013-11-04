@@ -7,4 +7,8 @@
     <string name="home_settings">SETTINGS</string>
     <string name="saves_screen_logo">Saves</string>
     <string name="start_new">Start New Game</string>
+    <string name="pref_sound">Sound</string>
+    <string name="pref_sound_summ">Turn on sounds in the game.</string>
+    <string name="pref_animation">Animation</string>
+    <string name="pref_animation_summ">Turn on animations in the game.</string>
 </resources>

@@ -2,9 +2,11 @@ package com.calvins.manfred;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.util.Log;
 import android.content.Intent;
 
@@ -58,5 +60,7 @@ public class HomeActivity extends Activity {
     public void settingsButtonClicked(View view)
     {
         Log.d(TAG,"Settings button clicked.");
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 }
