@@ -1,5 +1,6 @@
 package com.calvins.manfred;
 
+import android.preference.PreferenceManager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.util.Log;
+import android.content.Intent;
 
 public class HomeActivity extends ActionBarActivity {
 
@@ -18,6 +20,9 @@ public class HomeActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Set the default Settings
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
@@ -79,5 +84,7 @@ public class HomeActivity extends ActionBarActivity {
     public void settingsButtonClicked(View view)
     {
         Log.d(TAG,"Settings button clicked.");
+        Intent intent = new Intent(this, SettingsActivity.class);
+        startActivity(intent);
     }
 }
