@@ -40,15 +40,21 @@ public class ManfredActivity extends Activity {
     }
 
     public void eatButtonClicked(View view) {
-        Log.d("ManfredActivity", "eatButtonClicked");
+        Intent intent = new Intent(this, ActionsActivity.class);
+        intent.putExtra("category", "eat");
+        startActivity(intent);
     }
 
     public void exerciseButtonClicked(View view) {
-        Log.d("ManfredActivity", "exerciseButtonClicked");
+        Intent intent = new Intent(this, ActionsActivity.class);
+        intent.putExtra("category", "exercise");
+        startActivity(intent);
     }
 
     public void sleepButtonClicked(View view) {
-        Log.d("ManfredActivity", "sleepButtonClicked");
+        Intent intent = new Intent(this, ActionsActivity.class);
+        intent.putExtra("category", "sleep");
+        startActivity(intent);
     }
 
     public void manfredClicked(View view) {

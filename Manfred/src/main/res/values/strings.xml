@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <string name="app_name">Manfred</string>
     <string name="title_activity_home">Manfred</string>
     <string name="action_settings">Settings</string>
@@ -14,4 +15,7 @@
     <string name="eat_button">Eat</string>
     <string name="exercise_button">Exercise</string>
     <string name="sleep_button">Sleep</string>
+    <string name="title_activity_actions">ActionsActivity</string>
+    <string name="hello_world">Hello world!</string>
+
 </resources>

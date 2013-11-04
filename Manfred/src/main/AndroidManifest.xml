@@ -17,13 +17,18 @@
             android:name="com.calvins.manfred.HomeActivity"
             android:label="@string/title_activity_home" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SavesScreenActivity"/>
-        <activity android:name=".ManfredActivity"/>
-        <activity android:name="com.calvins.manfred.SettingsActivity"/>
+        <activity android:name="com.calvins.manfred.SavesScreenActivity" />
+        <activity android:name="com.calvins.manfred.ManfredActivity" />
+        <activity android:name="com.calvins.manfred.SettingsActivity" />
+        <activity
+            android:name="com.calvins.manfred.ActionsActivity"
+            android:label="@string/title_activity_actions" >
+        </activity>
     </application>
 
 </manifest>

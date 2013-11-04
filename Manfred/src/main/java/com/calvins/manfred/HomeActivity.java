@@ -18,6 +18,17 @@ public class HomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Load the list of actions into memory
+        // TODO: Where should this go?
+        try {
+            Action.loadActions(this);
+        }
+        catch(Exception e) {
+            Log.d("Actions", "Exception thrown.");
+            Log.d("Actions", e.getMessage());
+        }
+
         Intent intent = new Intent(this, ManfredActivity.class);
         startActivity(intent);
     }
