@@ -38,4 +38,24 @@ public class ManfredActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    public void eatButtonClicked(View view) {
+        Log.d("ManfredActivity", "eatButtonClicked");
+    }
+
+    public void exerciseButtonClicked(View view) {
+        Log.d("ManfredActivity", "exerciseButtonClicked");
+    }
+
+    public void sleepButtonClicked(View view) {
+        Log.d("ManfredActivity", "sleepButtonClicked");
+    }
+
+    public void manfredClicked(View view) {
+        Log.d("ManfredActivity", "manfredClicked");
+    }
+
+    public void logClicked(View view) {
+        Log.d("ManfredActivity", "logClicked");
+    }
 }

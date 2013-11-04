@@ -15,7 +15,8 @@
         android:layout_marginRight="10dp"
         android:background="@color/button_blue"
         android:text="@string/eat_button"
-        android:layout_toLeftOf="@+id/exercise_button"/>
+        android:layout_toLeftOf="@+id/exercise_button"
+        android:onClick="eatButtonClicked"/>
 
     <Button
         android:id="@+id/exercise_button"
@@ -24,7 +25,8 @@
         android:layout_marginRight="10dp"
         android:background="@color/button_blue"
         android:text="@string/exercise_button"
-        android:layout_centerHorizontal="true"/>
+        android:layout_centerHorizontal="true"
+        android:onClick="exerciseButtonClicked"/>
 
     <Button
         android:id="@+id/sleep_button"
@@ -32,15 +34,25 @@
         android:layout_height="50dp"
         android:background="@color/button_blue"
         android:text="@string/sleep_button"
-        android:layout_toRightOf ="@+id/exercise_button"/>
+        android:layout_toRightOf ="@+id/exercise_button"
+        android:onClick="sleepButtonClicked"/>
 
     <ImageView
-        android:id="@+id/manfred_home_picture"
+        android:id="@+id/manfred_image"
         android:layout_width="256dp"
         android:layout_height="256dp"
         android:src="@drawable/manfred1"
         android:layout_below="@+id/exercise_button"
         android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:onClick="manfredClicked"/>
+    
+    <TextView
+        android:layout_height="256dp"
+        android:layout_width="fill_parent"
+        android:layout_below="@+id/manfred_image"
+        android:background="@color/log_background"
+        android:clickable="true"
+        android:onClick="logClicked"/>
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 <resources>
     <color name="background_blue">#bbcde3</color>
     <color name="button_blue">#69B4FF</color>
+    <color name="log_background">#F0C3BA</color>
     <color name="White">#FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>
     <color name="LightYellow">#FFFFE0</color>
