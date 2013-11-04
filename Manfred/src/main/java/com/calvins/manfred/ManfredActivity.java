@@ -7,6 +7,10 @@ import android.view.MenuItem;
 import android.content.Intent;
 import android.view.View;
 import android.util.Log;
+import android.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
 
 public class ManfredActivity extends Activity {
 
@@ -37,6 +41,22 @@ public class ManfredActivity extends Activity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    /**
+     * The fragment for displaying the image of Manfred
+     */
+    public static class ManfredFragment extends Fragment {
+
+        public ManfredFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.fragment_manfred, container, false);
+            return rootView;
+        }
     }
 
     public void eatButtonClicked(View view) {

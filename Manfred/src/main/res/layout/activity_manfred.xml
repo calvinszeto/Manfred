@@ -1,58 +1,28 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".HomeActivity$PlaceholderFragment">
+    tools:context=".LogActivity"
+    tools:ignore="MergeRootFrame" >
 
-    <Button
-        android:id="@+id/eat_button"
-        android:layout_width="115dp"
-        android:layout_height="50dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/button_blue"
-        android:text="@string/eat_button"
-        android:layout_toLeftOf="@+id/exercise_button"
-        android:onClick="eatButtonClicked"/>
+    <fragment
+        android:name="com.calvins.manfred.ActionsActivity$ActionCategoryFragment"
+        android:id="@+id/action_categories"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent" />
 
-    <Button
-        android:id="@+id/exercise_button"
-        android:layout_width="115dp"
-        android:layout_height="50dp"
-        android:layout_marginRight="10dp"
-        android:background="@color/button_blue"
-        android:text="@string/exercise_button"
-        android:layout_centerHorizontal="true"
-        android:onClick="exerciseButtonClicked"/>
+    <fragment
+        android:name="com.calvins.manfred.ManfredActivity$ManfredFragment"
+        android:id="@+id/manfred"
+        android:layout_below="@+id/action_categories"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent" />
 
-    <Button
-        android:id="@+id/sleep_button"
-        android:layout_width="115dp"
-        android:layout_height="50dp"
-        android:background="@color/button_blue"
-        android:text="@string/sleep_button"
-        android:layout_toRightOf ="@+id/exercise_button"
-        android:onClick="sleepButtonClicked"/>
-
-    <ImageView
-        android:id="@+id/manfred_image"
-        android:layout_width="256dp"
-        android:layout_height="256dp"
-        android:src="@drawable/manfred1"
-        android:layout_below="@+id/exercise_button"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:onClick="manfredClicked"/>
-    
-    <TextView
-        android:layout_height="256dp"
-        android:layout_width="fill_parent"
-        android:layout_below="@+id/manfred_image"
-        android:background="@color/log_background"
-        android:clickable="true"
-        android:onClick="logClicked"/>
-
+    <fragment
+        android:name="com.calvins.manfred.LogActivity$LogFragment"
+        android:id="@+id/log"
+        android:layout_below="@+id/manfred"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent" />
 </RelativeLayout>

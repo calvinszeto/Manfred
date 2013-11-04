@@ -17,5 +17,6 @@
     <string name="sleep_button">Sleep</string>
     <string name="title_activity_actions">ActionsActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_log">MainActivity</string>
 
 </resources>

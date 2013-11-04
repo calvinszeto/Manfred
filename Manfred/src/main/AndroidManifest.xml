@@ -29,6 +29,10 @@
             android:name="com.calvins.manfred.ActionsActivity"
             android:label="@string/title_activity_actions" >
         </activity>
+        <activity
+            android:name="com.calvins.manfred.LogActivity"
+            android:label="@string/title_activity_log" >
+        </activity>
     </application>
 
 </manifest>
