@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<actions>
+    <action
+        name="moo"
+        category="eat"/>
+    <action
+        name="moo"
+        category="eat"/>
+    <action
+        name="moo"
+        category="eat"/>
+    <action
+        name="moo"
+        category="exercise"/>
+    <action
+        name="moo"
+        category="exercise"/>
+    <action
+        name="moo"
+        category="sleep"/>
+</actions>

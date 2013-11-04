@@ -18,6 +18,16 @@ public class HomeActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        // Load the list of actions into memory
+        // TODO: Where should this go?
+        try {
+            Action.loadActions(this);
+        }
+        catch(Exception e) {
+            Log.d("Actions", "Exception thrown.");
+            Log.d("Actions", e.getMessage());
+        }
     }
 
 
@@ -49,7 +59,12 @@ public class HomeActivity extends Activity {
     {
         Log.d(TAG,"Play button clicked.");
         //Response to button click
+        /*
         Intent intent = new Intent(this, SavesScreenActivity.class);
+        startActivity(intent);
+        */
+        //TODO: Until the save screen works, leaving this here for testing.
+        Intent intent = new Intent(this, ManfredActivity.class);
         startActivity(intent);
     }
 
