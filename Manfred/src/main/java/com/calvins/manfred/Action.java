@@ -55,15 +55,16 @@ public class Action {
             if (name.equals("action")) {
                String category = parser.getAttributeValue(null, "category");
                String path = parser.getAttributeValue(null, "path");
+               String event = parser.getAttributeValue(null, "event");
                if(category.equals("eat")) {
                    eat_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category, path));
+                           category, path, event));
                }else if(category.equals("exercise")) {
                    exercise_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category, path));
+                           category, path, event));
                }else {
                    sleep_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category, path));
+                           category, path, event));
                }
             }
         }
@@ -145,5 +146,11 @@ public class Action {
 
         dbConnector.close();
         // TODO: Add event to log
+        try {
+            Log.d(ManfredActivity.TAG, action.getEvent());
+            ManfredLog.writeLog(context, action.getEvent(), save_id);
+        } catch (Exception e) {
+            Log.d(ManfredActivity.TAG, e.getMessage());
+        }
     }
 }

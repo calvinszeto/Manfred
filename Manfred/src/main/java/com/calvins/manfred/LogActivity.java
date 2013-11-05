@@ -62,6 +62,11 @@ public class LogActivity extends Activity {
      */
     public static class LogFragment extends Fragment {
 
+        // To know when to invalidate the fragment
+        int log_size;
+        int save_id;
+        FadedTextAdapter adapter;
+
         public LogFragment() {
         }
 
@@ -73,12 +78,22 @@ public class LogActivity extends Activity {
 
             // Populate the Log ListView
             Activity activity = getActivity();
-            int save_id = (int) activity.getIntent().getLongExtra("_id", 0);
-            ArrayList<String> lines = ManfredLog.getLog(getActivity(), 10, save_id);
+            save_id = (int) activity.getIntent().getLongExtra("_id", 0);
+            ArrayList<String> lines = ManfredLog.getLog(getActivity(), 30, save_id);
             ListView list = (ListView) rootView.findViewById(R.id.log_list);
-            FadedTextAdapter adapter = new FadedTextAdapter(getActivity(), lines);
+            adapter = new FadedTextAdapter(getActivity(), lines);
             list.setAdapter(adapter);
+            log_size = ManfredLog.logSize();
             return rootView;
+        }
+
+        @Override
+        public void onResume() {
+            if(ManfredLog.logSize() != log_size) {
+               adapter.clear();
+               adapter.addAll(ManfredLog.getLog(getActivity(), 30, save_id));
+            }
+            super.onResume();
         }
 
         public class FadedTextAdapter extends ArrayAdapter {
@@ -110,8 +125,7 @@ public class LogActivity extends Activity {
     }
 
     public void logClicked(View view) {
-        Intent intent = new Intent(this, ManfredActivity.class);
-        startActivity(intent);
+        finish();
     }
 
 }

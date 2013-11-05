@@ -76,13 +76,17 @@ public class ManfredLog {
            if (log.size() < lines) {
                 clone = new ArrayList<String>(log);
             } else {
-                clone = new ArrayList<String>(log.subList(0, lines));
+                clone = new ArrayList<String>(log.subList(log.size() - lines, log.size()));
             }
         } finally {
             lock.unlock();
         }
         Collections.reverse(clone);
         return clone;
+    }
+
+    public static int logSize() {
+        return log.size();
     }
 
     public static void writeLog(Context context, String lines, int save_id) throws FileNotFoundException, IOException {
@@ -98,6 +102,7 @@ public class ManfredLog {
         } finally {
             lock.unlock();
         }
+        Log.d(ManfredActivity.TAG, log.get(log.size()-1));
         // TODO: Make this asynchronous?
         // Write the lines to the log file
         FileOutputStream fos = context.openFileOutput(FILE_PREFIX + save_id, Context.MODE_APPEND);
