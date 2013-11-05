@@ -72,7 +72,9 @@ public class LogActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_log, container, false);
 
             // Populate the Log ListView
-            ArrayList<String> lines = ManfredLog.getLog(10);
+            Activity activity = getActivity();
+            int save_id = (int) activity.getIntent().getLongExtra("_id", 0);
+            ArrayList<String> lines = ManfredLog.getLog(getActivity(), 10, save_id);
             ListView list = (ListView) rootView.findViewById(R.id.log_list);
             FadedTextAdapter adapter = new FadedTextAdapter(getActivity(), lines);
             list.setAdapter(adapter);

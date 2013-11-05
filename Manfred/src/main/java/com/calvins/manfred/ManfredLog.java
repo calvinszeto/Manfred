@@ -24,7 +24,6 @@ public class ManfredLog {
     private static ArrayList<String> log;
     // Make sure the log is only being modified or read by one thread
     private final static Lock lock = new ReentrantLock();
-    private static int save_id;
 
     /**
      * Loads lines of the log file into an ArrayList of Strings
@@ -40,7 +39,6 @@ public class ManfredLog {
             FileInputStream fis = context.openFileInput(FILE_PREFIX + save_id);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line;
-            save_id = save_id;
             lock.lock();
             try{
                 log = new ArrayList<String>();
@@ -56,14 +54,24 @@ public class ManfredLog {
             // If log file is gone, make a new one. Throws a FileNotFoundException
             // if the file is not creatable.
             FileOutputStream fos = context.openFileOutput(FILE_PREFIX + save_id, Context.MODE_PRIVATE);
+            BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
+            out.write("Manfred wakes up.");
+            out.close();
             fos.close();
         }
     }
 
-    public static ArrayList<String> getLog(int lines) {
+    public static ArrayList<String> getLog(Context context, int lines, int save_id) {
+        if(log == null) {
+            try {
+                loadLog(context, save_id);
+            } catch (Exception e) {
+                Log.d(ManfredActivity.TAG, e.getMessage());
+            }
+        }
         lock.lock();
         try {
-            if (log.size() < lines) {
+           if (log.size() < lines) {
                 return new ArrayList<String>(log);
             } else {
                 return new ArrayList<String>(log.subList(0, lines));
@@ -73,7 +81,10 @@ public class ManfredLog {
         }
     }
 
-    public static void writeLog(Context context, String lines) throws FileNotFoundException, IOException {
+    public static void writeLog(Context context, String lines, int save_id) throws FileNotFoundException, IOException {
+        if(log == null) {
+            loadLog(context, save_id);
+        }
         lock.lock();
         try {
             // Write the lines to the ArrayList

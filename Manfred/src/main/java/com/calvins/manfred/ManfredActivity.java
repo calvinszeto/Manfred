@@ -25,7 +25,7 @@ public class ManfredActivity extends Activity {
         try {
             ManfredLog.loadLog(this, save_id);
             // Temporary: testing the log write
-            ManfredLog.writeLog(this, "This is a test log\nMoo\nMoo Moo\nMoo Moo Moo\nMoo Moo Moo Moo\nMoo Moo Moo Moo Moo\nMoo Moo Moo Moo Moo Moo\nHarish\nMoo Moo\nMoo");
+            ManfredLog.writeLog(this, "This is a test log\nMoo\nMoo Moo\nMoo Moo Moo\nMoo Moo Moo Moo\nMoo Moo Moo Moo Moo\nMoo Moo Moo Moo Moo Moo\nHarish\nMoo Moo\nMoo", save_id);
         } catch (Exception e) {
             Log.d(TAG, e.getMessage());
         }
