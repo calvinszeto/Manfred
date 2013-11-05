@@ -52,7 +52,7 @@ public class ManfredLog {
     }
 
     public static ArrayList<String> getLog(int lines) {
-        if(log.size() < lines) {
+        if (log.size() < lines) {
             return new ArrayList<String>(log);
         } else {
             return new ArrayList<String>(log.subList(0, lines));
@@ -61,14 +61,14 @@ public class ManfredLog {
 
     public static void writeLog(Context context, String lines) throws FileNotFoundException, IOException {
         // Write the lines to the ArrayList
-        for(String line: lines.split("\n")) {
+        for (String line : lines.split("\n")) {
             log.add(line);
         }
         // TODO: Make this asynchronous?
         // Write the lines to the log file
         FileOutputStream fos = context.openFileOutput(FILE_PREFIX + save_id, Context.MODE_APPEND);
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
-        for(String line: lines.split("\n")) {
+        for (String line : lines.split("\n")) {
             out.write(line);
             out.newLine();
         }

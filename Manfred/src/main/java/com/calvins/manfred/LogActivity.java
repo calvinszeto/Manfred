@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Context;
+import android.content.Intent;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -106,5 +107,9 @@ public class LogActivity extends Activity {
         }
     }
 
+    public void logClicked(View view) {
+        Intent intent = new Intent(this, ManfredActivity.class);
+        startActivity(intent);
+    }
 
 }
