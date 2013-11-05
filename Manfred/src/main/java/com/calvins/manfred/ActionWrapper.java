@@ -8,11 +8,13 @@ public class ActionWrapper {
     private String name;
     private String category;
     private String path;
+    private String event;
 
-    public ActionWrapper(String name, String category, String path) {
+    public ActionWrapper(String name, String category, String path, String event) {
         this.name = name;
         this.category = category;
         this.path = path;
+        this.event = event;
     }
 
     public String getName() {
@@ -25,6 +27,10 @@ public class ActionWrapper {
 
     public String getPath() {
         return path;
+    }
+
+    public String getEvent() {
+        return event;
     }
 
     @Override

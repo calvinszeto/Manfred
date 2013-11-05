@@ -3,41 +3,51 @@
     <action
         name="Onion Rings"
         path="healthy"
+        event="Manfred eats a sack of onion rings."
         category="eat"/>
     <action
         name="Grilled Chicken"
         path="healthy"
+        event="Manfred eats a big grilled chicken."
         category="eat"/>
     <action
         name="32 Donuts"
         path="healthy"
+        event="Manfred scarfs down thirty-two donuts."
         category="eat"/>
     <action
         name="A Cow"
         path="healthy"
+        event="Manfred eats a cow."
         category="eat"/>
     <action
         name="Run a Mile"
         path="healthy"
+        event="Manfred runs a mile."
         category="exercise"/>
     <action
         name="Watch TV"
         path="healthy"
+        event="Manfred sits down for some TV."
         category="exercise"/>
     <action
         name="Swim a Mile"
         path="healthy"
+        event="Manfred heads to the ocean to swim a mile."
         category="exercise"/>
     <action
         name="Smoke a Cigarette"
         path="healthy"
+        event="Manfred gets off the couch and walks outside for a smoke."
         category="exercise"/>
     <action
         name="Nap 30 Minutes"
         path="healthy"
+        event="Manfred naps on the couch for twenty minutes."
         category="sleep"/>
     <action
         name="Sleep 7 Hours"
         path="healthy"
+        event="Manfred goes to bed and sleeps for a few hours."
         category="sleep"/>
 </actions>
