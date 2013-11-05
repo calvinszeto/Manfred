@@ -10,9 +10,11 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.content.Intent;
+import android.util.Log;
 
 public class ActionsActivity extends Activity {
 
@@ -27,6 +29,25 @@ public class ActionsActivity extends Activity {
         GridView gridview = (GridView) findViewById(R.id.actions_grid);
         // The adapter for the actions
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.item_action, R.id.action_wrapper, Action.getActions(category));
+        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
+                Log.d(ManfredActivity.TAG, "" + position + " " + id);
+                /*
+                final String item = (String) parent.getItemAtPosition(position);
+                Log.d(ManfredActivity.TAG, item);
+                v.animate().setDuration(2000).alpha(0)
+                        .withEndAction(new Runnable() {
+                            @Override
+                            public void run() {
+                                list.remove(item);
+                                adapter.notifyDataSetChanged();
+                                view.setAlpha(1);
+                            }
+                        });
+                        */
+            }
+        });
         gridview.setAdapter(adapter);
     }
 

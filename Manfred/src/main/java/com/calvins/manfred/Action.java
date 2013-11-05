@@ -25,14 +25,18 @@ public class Action {
      * Loads the actions from actions.xml into the actions object as ActionWrappers
      */
     public static void loadActions(Context context) throws XmlPullParserException, IOException {
-        InputStream in = context.getAssets().open("actions.xml");
-        try {
-            XmlPullParser parser = Xml.newPullParser();
-            parser.setInput(in, null);
-            parser.nextTag();
-            parseActions(parser);
-        } finally {
-            in.close();
+        if(eat_actions.size() == 0 ||
+                exercise_actions.size() == 0 ||
+                sleep_actions.size() == 0) {
+            InputStream in = context.getAssets().open("actions.xml");
+            try {
+                XmlPullParser parser = Xml.newPullParser();
+                parser.setInput(in, null);
+                parser.nextTag();
+                parseActions(parser);
+            } finally {
+                in.close();
+            }
         }
     }
 
