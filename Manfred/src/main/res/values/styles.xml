@@ -4,6 +4,7 @@
     <style name="ManfredTheme" parent="Theme.AppCompat">
         <!-- See http://developer.android.com/guide/topics/ui/themes.html for instructions on using themes -->
         <!-- List of attributes here: http://developer.android.com/reference/android/R.attr.html -->
+        <item name="android:screenOrientation">portrait</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:windowBackground">@color/background_blue</item>
         <item name="android:windowNoTitle">true</item>

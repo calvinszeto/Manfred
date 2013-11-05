@@ -10,12 +10,25 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.util.Log;
+import android.widget.TextView;
 
 public class LogActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        /*
+        try {
+            // Temporary: testing the log write
+            this.deleteFile("log1");
+            ManfredLog.writeLog(this, "This is a test log\nMoo\nMoo Moo\nMoo Moo Moo", 1);
+        } catch(Exception e) {
+            Log.d(ManfredActivity.TAG, e.getMessage());
+        }
+        */
+
         setContentView(R.layout.activity_log);
 
         if (savedInstanceState == null) {
@@ -59,6 +72,12 @@ public class LogActivity extends Activity {
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                 Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_log, container, false);
+            String text = "";
+            TextView log_text = (TextView) rootView.findViewById(R.id.log_text);
+            for(String line:ManfredLog.getLog(3)) {
+               text = text.concat(line + "\n");
+            }
+            log_text.setText(text);
             return rootView;
         }
     }

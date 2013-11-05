@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".LogActivity"
-    tools:ignore="MergeRootFrame" >
+    tools:ignore="MergeRootFrame">
 
     <fragment
         android:name="com.calvins.manfred.ActionsActivity$ActionCategoryFragment"
@@ -23,6 +23,6 @@
         android:name="com.calvins.manfred.LogActivity$LogFragment"
         android:id="@+id/log"
         android:layout_below="@+id/manfred"
-        android:layout_height="wrap_content"
+        android:layout_height="256dp"
         android:layout_width="fill_parent" />
 </RelativeLayout>

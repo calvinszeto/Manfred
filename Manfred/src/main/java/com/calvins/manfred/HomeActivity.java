@@ -59,15 +59,8 @@ public class HomeActivity extends Activity {
     {
         Log.d(TAG,"Play button clicked.");
         //Response to button click
-
         Intent intent = new Intent(this, SavesScreenActivity.class);
         startActivity(intent);
-
-        /*
-        //TODO: Until the save screen works, leaving this here for testing.
-        Intent intent = new Intent(this, ManfredActivity.class);
-        startActivity(intent);
-        */
     }
 
     /**

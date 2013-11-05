@@ -14,11 +14,18 @@ import android.view.ViewGroup;
 
 public class ManfredActivity extends Activity {
 
-    private static final String TAG = "ManfredActivity";
+    public static final String TAG = "ManfredActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try {
+            ManfredLog.loadLog(this, 1);
+        } catch(Exception e) {
+            Log.d(TAG, e.getMessage());
+        }
+
         setContentView(R.layout.activity_manfred);
     }
 
@@ -78,10 +85,11 @@ public class ManfredActivity extends Activity {
     }
 
     public void manfredClicked(View view) {
-        Log.d("ManfredActivity", "manfredClicked");
+        Log.d(TAG, "manfredClicked");
     }
 
     public void logClicked(View view) {
-        Log.d("ManfredActivity", "logClicked");
+        Intent intent = new Intent(this, LogActivity.class);
+        startActivity(intent);
     }
 }
