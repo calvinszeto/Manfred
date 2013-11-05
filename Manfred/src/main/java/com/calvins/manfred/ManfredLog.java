@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import android.content.Context;
 import android.util.Log;
@@ -20,6 +22,8 @@ public class ManfredLog {
 
     private static String FILE_PREFIX = "log";
     private static ArrayList<String> log;
+    // Make sure the log is only being modified or read by one thread
+    private final static Lock lock = new ReentrantLock();
     private static int save_id;
 
     /**
@@ -36,10 +40,15 @@ public class ManfredLog {
             FileInputStream fis = context.openFileInput(FILE_PREFIX + save_id);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line;
-            log = new ArrayList<String>();
             save_id = save_id;
-            while ((line = in.readLine()) != null) {
-                log.add(line);
+            lock.lock();
+            try{
+                log = new ArrayList<String>();
+                while ((line = in.readLine()) != null) {
+                    log.add(line);
+                }
+            } finally {
+                lock.unlock();
             }
             in.close();
             fis.close();
@@ -52,17 +61,27 @@ public class ManfredLog {
     }
 
     public static ArrayList<String> getLog(int lines) {
-        if (log.size() < lines) {
-            return new ArrayList<String>(log);
-        } else {
-            return new ArrayList<String>(log.subList(0, lines));
+        lock.lock();
+        try {
+            if (log.size() < lines) {
+                return new ArrayList<String>(log);
+            } else {
+                return new ArrayList<String>(log.subList(0, lines));
+            }
+        } finally {
+            lock.unlock();
         }
     }
 
     public static void writeLog(Context context, String lines) throws FileNotFoundException, IOException {
-        // Write the lines to the ArrayList
-        for (String line : lines.split("\n")) {
-            log.add(line);
+        lock.lock();
+        try {
+            // Write the lines to the ArrayList
+            for (String line : lines.split("\n")) {
+                log.add(line);
+            }
+        } finally {
+            lock.unlock();
         }
         // TODO: Make this asynchronous?
         // Write the lines to the log file
