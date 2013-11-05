@@ -25,7 +25,7 @@ public class ActionsActivity extends Activity {
 
         Intent intent = getIntent();
         final String category = intent.getStringExtra("category");
-        final int save_id = (int) intent.getLongExtra("_id", 0);
+        final int save_id = intent.getIntExtra("_id", 0);
         final Activity activity = this;
 
         GridView gridview = (GridView) findViewById(R.id.actions_grid);
