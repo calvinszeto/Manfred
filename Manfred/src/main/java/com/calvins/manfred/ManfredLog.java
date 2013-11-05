@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -69,16 +70,19 @@ public class ManfredLog {
                 Log.d(ManfredActivity.TAG, e.getMessage());
             }
         }
+        ArrayList<String> clone;
         lock.lock();
         try {
            if (log.size() < lines) {
-                return new ArrayList<String>(log);
+                clone = new ArrayList<String>(log);
             } else {
-                return new ArrayList<String>(log.subList(0, lines));
+                clone = new ArrayList<String>(log.subList(0, lines));
             }
         } finally {
             lock.unlock();
         }
+        Collections.reverse(clone);
+        return clone;
     }
 
     public static void writeLog(Context context, String lines, int save_id) throws FileNotFoundException, IOException {
