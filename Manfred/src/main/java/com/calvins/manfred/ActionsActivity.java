@@ -28,6 +28,7 @@ public class ActionsActivity extends Activity {
         Intent intent = getIntent();
         final String category = intent.getStringExtra("category");
         final int save_id = (int) intent.getIntExtra("_id", 0);
+        final Activity activity = this;
 
         GridView gridview = (GridView) findViewById(R.id.actions_grid);
         // The adapter for the actions
@@ -36,7 +37,7 @@ public class ActionsActivity extends Activity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Action.applyAction((int) id, category, save_id, dbConnector);
+                Action.applyAction((int) id, category, save_id, dbConnector, activity);
                 finish();
             }
         });

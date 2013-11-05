@@ -80,7 +80,7 @@ public class Action {
         }
     }
 
-    public static void applyAction(int action_id, String category, int save_id, DatabaseConnector dbConnector) {
+    public static void applyAction(int action_id, String category, int save_id, DatabaseConnector dbConnector, Context context) {
         ActionWrapper action = getActions(category).get(action_id);
 
         dbConnector.open();
