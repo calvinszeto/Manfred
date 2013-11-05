@@ -25,5 +25,7 @@
     <string name="saves_popup_play">Play</string>
     <string name="saves_popup_close">Back</string>
     <string name="enter_name_message">Enter name here.</string>
+    <string name="detail_screen_logo">Manfred</string>
+    <string name="your_current_manfred">Your current Manfred picture</string>
 
 </resources>

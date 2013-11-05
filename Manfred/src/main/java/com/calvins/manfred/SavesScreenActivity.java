@@ -86,6 +86,8 @@ public class SavesScreenActivity extends ListActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        if(popupWindow!=null)
+            popupWindow.dismiss();
         new GetManfredsTask().execute((Object[]) null);
     }
 

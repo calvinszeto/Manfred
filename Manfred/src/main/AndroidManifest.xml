@@ -25,6 +25,7 @@
         <activity android:name="com.calvins.manfred.SavesScreenActivity" />
         <activity android:name="com.calvins.manfred.ManfredActivity" />
         <activity android:name="com.calvins.manfred.SettingsActivity" />
+        <activity android:name="com.calvins.manfred.DetailedManfredActivity" />
         <activity
             android:name="com.calvins.manfred.ActionsActivity"
             android:label="@string/title_activity_actions" >

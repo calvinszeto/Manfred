@@ -38,15 +38,30 @@ public class DatabaseConnector {
      * @return returns _id of manfred object
      */
     public long insertNewGame(String dateCreated, String name){
+        open();
+
         ContentValues newManfred = new ContentValues();
         newManfred.put("dateModified", dateCreated);
         newManfred.put("dateCreated", dateCreated);
         newManfred.put("name",name);
+        int id = (int)database.insert("manfred", null, newManfred);
 
-        open();
-        long id = database.insert("manfred", null, newManfred);
+        ContentValues newManfredActions = new ContentValues();
+        newManfredActions.put("_id",id);
+        database.insert("actions",null,newManfredActions);
+
+        ContentValues newManfredStats = new ContentValues();
+        newManfredStats.put("_id",id);
+        newManfredStats.put("weight",0);
+        newManfredStats.put("cholesterol",0);
+        newManfredStats.put("bench_press",0);
+        newManfredStats.put("deadlift",0);
+        newManfredStats.put("squat",0);
+        long stats_id = database.insert("stats",null,newManfredStats);
+
+        Log.d(TAG, "Inserted into stats table with _id = "+stats_id);
+        Log.d(TAG, "Inserted manfred instance to all tables with _id = "+id);
         close();
-
         return id;
     }
 
@@ -64,6 +79,20 @@ public class DatabaseConnector {
     public Cursor getAllGames(){
         return database.query("manfred", new String[]{"_id", "name", "dateModified"},
                 null, null, null, null, "name");
+    }
+
+    //Returns stats for Manfred instance to display on detailed manfred screen
+    public Cursor getStats(int _id) {
+        String id = _id+"";
+        return database.query("stats", new String[]{"weight", "cholesterol", "bench_press", "deadlift", "squat"},
+                "_id = ?", new String[]{id}, null, null, null);
+    }
+
+    //Returns name of this Manfred instance
+    public Cursor getName(int _id) {
+        String id = _id+"";
+        return database.query("manfred", new String[]{"name"},
+                "_id = ?", new String[]{id}, null, null, null);
     }
 
     //Returns information for one Manfred game
@@ -109,6 +138,11 @@ public class DatabaseConnector {
 
             String createStats = "CREATE TABLE stats"+
                     "(_id INTEGER PRIMARY KEY, "+
+                    "weight INTEGER, "+
+                    "cholesterol INTEGER, "+
+                    "bench_press INTEGER, "+
+                    "deadlift INTEGER, "+
+                    "squat INTEGER, "+
                     "FOREIGN KEY(_id) REFERENCES manfred(_id));";
 
             db.execSQL(createManfred);

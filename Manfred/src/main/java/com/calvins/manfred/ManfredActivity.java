@@ -15,19 +15,20 @@ import android.view.ViewGroup;
 public class ManfredActivity extends Activity {
 
     public static final String TAG = "ManfredActivity";
+    private int save_id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        int save_id = (int) intent.getLongExtra("_id", 0);
+        save_id = (int) intent.getLongExtra("_id", 0);
 
         try {
             ManfredLog.loadLog(this, save_id);
             // Temporary: testing the log write
             ManfredLog.writeLog(this, "This is a test log\nMoo\nMoo Moo\nMoo Moo Moo\nMoo Moo Moo Moo\nMoo Moo Moo Moo Moo\nMoo Moo Moo Moo Moo Moo\nHarish\nMoo Moo\nMoo", save_id);
-        } catch (Exception e) {
-            Log.d(TAG, e.getMessage());
+        } catch(Exception e) {
+            Log.d(TAG, e.toString());
         }
 
         setContentView(R.layout.activity_manfred);
@@ -89,7 +90,9 @@ public class ManfredActivity extends Activity {
     }
 
     public void manfredClicked(View view) {
-        Log.d(TAG, "manfredClicked");
+        Intent intent = new Intent(this, DetailedManfredActivity.class);
+        intent.putExtra("_id", save_id);
+        startActivity(intent);
     }
 
     public void logClicked(View view) {
