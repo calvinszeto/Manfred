@@ -147,7 +147,6 @@ public class Action {
         dbConnector.close();
         // TODO: Add event to log
         try {
-            Log.d(ManfredActivity.TAG, action.getEvent());
             ManfredLog.writeLog(context, action.getEvent(), save_id);
         } catch (Exception e) {
             Log.d(ManfredActivity.TAG, e.getMessage());

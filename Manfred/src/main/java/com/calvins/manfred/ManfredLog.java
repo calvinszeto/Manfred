@@ -37,7 +37,8 @@ public class ManfredLog {
     public static void loadLog(Context context, int save_id) throws IOException, FileNotFoundException {
         try {
             // Try opening the log file.
-            FileInputStream fis = context.openFileInput(FILE_PREFIX + save_id);
+            String filename = FILE_PREFIX + Integer.toString(save_id);
+            FileInputStream fis = context.openFileInput(filename);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line;
             lock.lock();
@@ -54,15 +55,21 @@ public class ManfredLog {
         } catch (FileNotFoundException e) {
             // If log file is gone, make a new one. Throws a FileNotFoundException
             // if the file is not creatable.
-            FileOutputStream fos = context.openFileOutput(FILE_PREFIX + save_id, Context.MODE_PRIVATE);
+            String filename = FILE_PREFIX + Integer.toString(save_id);
+            Log.d(ManfredActivity.TAG, "Creating file: " + filename);
+            FileOutputStream fos = context.openFileOutput(filename, Context.MODE_PRIVATE);
             BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
             out.write("Manfred wakes up.");
+            out.newLine();
+            out.flush();
             out.close();
             fos.close();
+            loadLog(context, save_id);
         }
     }
 
     public static ArrayList<String> getLog(Context context, int lines, int save_id) {
+        Log.d(ManfredActivity.TAG, "getLog called, log is size: " + log.size());
         if(log == null) {
             try {
                 loadLog(context, save_id);
@@ -102,17 +109,19 @@ public class ManfredLog {
         } finally {
             lock.unlock();
         }
-        Log.d(ManfredActivity.TAG, log.get(log.size()-1));
         // TODO: Make this asynchronous?
         // Write the lines to the log file
-        FileOutputStream fos = context.openFileOutput(FILE_PREFIX + save_id, Context.MODE_APPEND);
+        String filename = FILE_PREFIX + Integer.toString(save_id);
+        FileOutputStream fos = context.openFileOutput(filename, Context.MODE_APPEND);
         BufferedWriter out = new BufferedWriter(new OutputStreamWriter(fos));
         for (String line : lines.split("\n")) {
             out.write(line);
             out.newLine();
         }
+        out.flush();
         out.close();
         fos.close();
+        loadLog(context, save_id);
     }
 
 }
