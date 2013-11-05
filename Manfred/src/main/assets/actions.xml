@@ -2,7 +2,7 @@
 <actions>
     <action
         name="Onion Rings"
-        path="healthy"
+        path="unhealthy"
         category="eat"/>
     <action
         name="Grilled Chicken"
@@ -10,7 +10,7 @@
         category="eat"/>
     <action
         name="32 Donuts"
-        path="healthy"
+        path="unhealthy"
         category="eat"/>
     <action
         name="A Cow"
@@ -22,7 +22,7 @@
         category="exercise"/>
     <action
         name="Watch TV"
-        path="healthy"
+        path="unhealthy"
         category="exercise"/>
     <action
         name="Swim a Mile"
@@ -30,7 +30,7 @@
         category="exercise"/>
     <action
         name="Smoke a Cigarette"
-        path="healthy"
+        path="unhealthy"
         category="exercise"/>
     <action
         name="Nap 30 Minutes"
@@ -38,6 +38,6 @@
         category="sleep"/>
     <action
         name="Sleep 7 Hours"
-        path="healthy"
+        path="unhealthy"
         category="sleep"/>
 </actions>

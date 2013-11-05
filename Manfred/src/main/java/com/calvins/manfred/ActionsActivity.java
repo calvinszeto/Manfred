@@ -18,6 +18,8 @@ import android.util.Log;
 
 public class ActionsActivity extends Activity {
 
+    public static final String TAG = "ActionsActivity";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +27,16 @@ public class ActionsActivity extends Activity {
 
         Intent intent = getIntent();
         final String category = intent.getStringExtra("category");
-        final int save_id = (int) intent.getLongExtra("_id", 0);
+        final int save_id = (int) intent.getIntExtra("_id", 0);
 
         GridView gridview = (GridView) findViewById(R.id.actions_grid);
         // The adapter for the actions
         ArrayAdapter adapter = new ArrayAdapter(this, R.layout.item_action, R.id.action_wrapper, Action.getActions(category));
+        final DatabaseConnector dbConnector = new DatabaseConnector(ActionsActivity.this);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Action.applyAction((int) id, category, save_id);
+                Action.applyAction((int) id, category, save_id, dbConnector);
                 finish();
             }
         });
