@@ -1,0 +1,55 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/popup_new_game"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:padding="10sp" >
+
+    <TextView
+        android:id="@+id/txtView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/White"
+        android:text="@string/name_your_manfred" />
+
+    <EditText android:id="@+id/edit_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/enter_name_message"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/txtView"
+        android:layout_marginTop="5dp"/>
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@id/edit_message"
+        android:layout_marginTop="5dp"
+        android:gravity="center"
+        style="?android:attr/buttonBarStyle">
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/popup_back"
+            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/saves_popup_close"
+            android:background="@color/button_blue" />
+
+        <Button
+            style="?android:attr/buttonBarButtonStyle"
+            android:id="@+id/popup_play"
+            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/saves_popup_play"
+            android:background="@color/button_blue" />
+
+    </LinearLayout>
+
+
+</RelativeLayout>

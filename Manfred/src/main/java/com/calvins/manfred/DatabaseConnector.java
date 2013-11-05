@@ -31,16 +31,23 @@ public class DatabaseConnector {
             database.close();
     }
 
-    //This method will add a new instance of Manfred when Start New Game is clicked
-    public void insertNewGame(String dateModified, String dateCreated, String name){
+    /**
+     * Called when a new manfred is created
+     * @param dateCreated
+     * @param name
+     * @return returns _id of manfred object
+     */
+    public long insertNewGame(String dateCreated, String name){
         ContentValues newManfred = new ContentValues();
-        newManfred.put("dateModified", dateModified);
+        newManfred.put("dateModified", dateCreated);
         newManfred.put("dateCreated", dateCreated);
         newManfred.put("name",name);
 
         open();
-        database.insert("manfred", null, newManfred);
+        long id = database.insert("manfred", null, newManfred);
         close();
+
+        return id;
     }
 
     //Updates an instance of the Manfred game
@@ -55,7 +62,7 @@ public class DatabaseConnector {
 
     //Returns information for all games to display on Saves Screen
     public Cursor getAllGames(){
-        return database.query("manfred", new String[]{"_id", "name"},
+        return database.query("manfred", new String[]{"_id", "name", "dateModified"},
                 null, null, null, null, "name");
     }
 

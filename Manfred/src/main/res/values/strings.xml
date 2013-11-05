@@ -18,5 +18,12 @@
     <string name="title_activity_actions">ActionsActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_log">MainActivity</string>
+    <string name="name_placeholder">Name of Manfred</string>
+    <string name="last_saved">Last Saved: </string>
+    <string name="last_modified_placeholder">Last Modified</string>
+    <string name="name_your_manfred">Name your Manfred</string>
+    <string name="saves_popup_play">Play</string>
+    <string name="saves_popup_close">Back</string>
+    <string name="enter_name_message">Enter name here.</string>
 
 </resources>
