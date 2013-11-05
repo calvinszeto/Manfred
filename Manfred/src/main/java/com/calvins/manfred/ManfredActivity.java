@@ -19,9 +19,13 @@ public class ManfredActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Intent intent = getIntent();
+        int save_id = (int) intent.getLongExtra("_id", 0);
 
         try {
-            ManfredLog.loadLog(this, 1);
+            ManfredLog.loadLog(this, save_id);
+            // Temporary: testing the log write
+            ManfredLog.writeLog(this, "This is a test log\nMoo\nMoo Moo\nMoo Moo Moo\nMoo Moo Moo Moo\nMoo Moo Moo Moo Moo\nMoo Moo Moo Moo Moo Moo\nHarish\nMoo Moo\nMoo");
         } catch(Exception e) {
             Log.d(TAG, e.getMessage());
         }

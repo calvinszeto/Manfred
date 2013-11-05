@@ -20,6 +20,7 @@ public class ManfredLog {
 
     private static String FILE_PREFIX = "log";
     private static ArrayList<String> log;
+    private static int save_id;
 
     /**
      * Loads lines of the log file into an ArrayList of Strings
@@ -36,6 +37,7 @@ public class ManfredLog {
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             String line;
             log = new ArrayList<String>();
+            save_id = save_id;
             while ((line = in.readLine()) != null) {
                 log.add(line);
             }
@@ -57,7 +59,7 @@ public class ManfredLog {
         }
     }
 
-    public static void writeLog(Context context, String lines, int save_id) throws FileNotFoundException, IOException {
+    public static void writeLog(Context context, String lines) throws FileNotFoundException, IOException {
         // Write the lines to the ArrayList
         for(String line: lines.split("\n")) {
             log.add(line);

@@ -16,4 +16,9 @@
         android:clickable="true"
         android:onClick="logClicked" />
 
+    <ListView
+        android:id="@+id/log_list"
+        android:layout_height="fill_parent"
+        android:layout_width="fill_parent"/>
+
 </RelativeLayout>
