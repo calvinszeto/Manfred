@@ -7,10 +7,12 @@ public class ActionWrapper {
 
     private String name;
     private String category;
+    private String path;
 
-    public ActionWrapper(String name, String category) {
+    public ActionWrapper(String name, String category, String path) {
         this.name = name;
         this.category = category;
+        this.path = path;
     }
 
     public String getName() {
@@ -19,6 +21,10 @@ public class ActionWrapper {
 
     public String getCategory() {
         return category;
+    }
+
+    public String getPath() {
+        return path;
     }
 
     @Override

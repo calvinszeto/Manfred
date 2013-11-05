@@ -48,15 +48,16 @@ public class Action {
             String name = parser.getName();
             if (name.equals("action")) {
                String category = parser.getAttributeValue(null, "category");
+               String path = parser.getAttributeValue(null, "path");
                if(category.equals("eat")) {
                    eat_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category));
+                           category, path));
                }else if(category.equals("exercise")) {
                    exercise_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category));
+                           category, path));
                }else {
                    sleep_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category));
+                           category, path));
                }
             }
         }
@@ -70,5 +71,17 @@ public class Action {
         }else {
             return sleep_actions;
         }
+    }
+
+    public static void applyAction(int action_id, String category, int save_id) {
+        ActionWrapper action = getActions(category).get(action_id);
+        if(action.getPath() == "healthy") {
+            // TODO: Apply healthy changes
+
+        } else {
+            // TODO: Apply unhealthy changes
+
+        }
+        // TODO: Add event to log
     }
 }

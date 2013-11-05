@@ -24,7 +24,8 @@ public class ActionsActivity extends Activity {
         setContentView(R.layout.activity_actions);
 
         Intent intent = getIntent();
-        String category = intent.getStringExtra("category");
+        final String category = intent.getStringExtra("category");
+        final int save_id = (int) intent.getLongExtra("_id", 0);
 
         GridView gridview = (GridView) findViewById(R.id.actions_grid);
         // The adapter for the actions
@@ -32,20 +33,8 @@ public class ActionsActivity extends Activity {
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
-                Log.d(ManfredActivity.TAG, "" + position + " " + id);
-                /*
-                final String item = (String) parent.getItemAtPosition(position);
-                Log.d(ManfredActivity.TAG, item);
-                v.animate().setDuration(2000).alpha(0)
-                        .withEndAction(new Runnable() {
-                            @Override
-                            public void run() {
-                                list.remove(item);
-                                adapter.notifyDataSetChanged();
-                                view.setAlpha(1);
-                            }
-                        });
-                        */
+                Action.applyAction((int) id, category, save_id);
+                finish();
             }
         });
         gridview.setAdapter(adapter);
