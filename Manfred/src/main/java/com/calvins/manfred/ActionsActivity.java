@@ -8,13 +8,18 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.app.Activity;
 import android.os.Bundle;
+import android.graphics.Color;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.content.Intent;
+import android.content.Context;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 public class ActionsActivity extends Activity {
 
@@ -32,7 +37,7 @@ public class ActionsActivity extends Activity {
 
         GridView gridview = (GridView) findViewById(R.id.actions_grid);
         // The adapter for the actions
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.item_action, R.id.action_wrapper, Action.getActions(category));
+        ActionsAdapter adapter = new ActionsAdapter(this, Action.getActions(category));
         final DatabaseConnector dbConnector = new DatabaseConnector(ActionsActivity.this);
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -42,6 +47,38 @@ public class ActionsActivity extends Activity {
             }
         });
         gridview.setAdapter(adapter);
+    }
+
+    public class ActionsAdapter extends ArrayAdapter {
+        private Context context;
+        private ArrayList<ActionWrapper> values;
+
+        public ActionsAdapter(Context context, ArrayList<ActionWrapper> values) {
+            super(context, R.layout.item_action, values);
+            this.context = context;
+            this.values = values;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            // Grab the TextView for each line
+            LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rootView = layoutInflater.inflate(R.layout.item_action, parent, false);
+            Button button = (Button) rootView.findViewById(R.id.action_wrapper);
+            // Set the text accordingly
+            button.setText(values.get(position).toString());
+            // Locked actions are gray and unclickable
+            if(values.get(position).getUnlocked()) {
+                button.setBackgroundColor(getResources().getColor(R.color.Gray));
+                // Ironically, we set the button as clickable to make it unclickable
+                // The Button click overrides the GridView onItemClickListener
+                button.setClickable(true);
+            } else {
+                button.setBackgroundColor(getResources().getColor(R.color.button_blue));
+            }
+            return rootView;
+        }
+
     }
 
 

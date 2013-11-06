@@ -10,6 +10,8 @@ import android.util.Log;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import java.io.IOException;
+import org.xmlpull.v1.XmlPullParserException;
 
 
 public class ManfredActivity extends Activity {
@@ -21,16 +23,20 @@ public class ManfredActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
-        save_id = (int) intent.getLongExtra("_id", 0);
-
+        save_id = ((Long) intent.getLongExtra("_id", 0)).intValue();
+        Log.d(ManfredActivity.TAG, "ManfredActivity - save_id is " + save_id);
         try {
+            // Load the list of actions into memory
+            Action.loadActions(this, save_id);
             ManfredLog.loadLog(this, save_id);
             /*
             // Temporary: testing the log write
             ManfredLog.writeLog(this, "This is a test log\nMoo\nMoo Moo\nMoo Moo Moo\nMoo Moo Moo Moo\nMoo Moo Moo Moo Moo\nMoo Moo Moo Moo Moo Moo\nHarish\nMoo Moo\nMoo", save_id);
             */
-        } catch(Exception e) {
-            Log.d(TAG, e.toString());
+        } catch(IOException e) {
+            Log.d(TAG, "ManfredActivity: " + e.toString());
+        } catch(XmlPullParserException e) {
+            Log.d(TAG, "ManfredActivity: " + e.toString());
         }
 
         setContentView(R.layout.activity_manfred);

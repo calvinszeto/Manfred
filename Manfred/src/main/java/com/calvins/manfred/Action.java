@@ -30,52 +30,73 @@ public class Action {
     /**
      * Loads the actions from actions.xml into the actions object as ActionWrappers
      */
-    public static void loadActions(Context context) throws XmlPullParserException, IOException {
-        if(eat_actions.size() == 0 ||
-                exercise_actions.size() == 0 ||
-                sleep_actions.size() == 0) {
-            InputStream in = context.getAssets().open("actions.xml");
-            try {
-                XmlPullParser parser = Xml.newPullParser();
-                parser.setInput(in, null);
-                parser.nextTag();
-                parseActions(parser);
-            } finally {
-                in.close();
-            }
+    public static void loadActions(Context context, int save_id) throws XmlPullParserException, IOException {
+        InputStream in = context.getAssets().open("actions.xml");
+        eat_actions = new ArrayList<ActionWrapper>();
+        exercise_actions = new ArrayList<ActionWrapper>();
+        sleep_actions = new ArrayList<ActionWrapper>();
+        try {
+            XmlPullParser parser = Xml.newPullParser();
+            parser.setInput(in, null);
+            parser.nextTag();
+            parseActions(parser);
+        } finally {
+            in.close();
         }
+        setActionsLocked(context, save_id);
     }
 
     private static void parseActions(XmlPullParser parser) throws XmlPullParserException, IOException {
-        while(parser.next() != XmlPullParser.END_DOCUMENT) {
-            if(parser.getEventType() != XmlPullParser.START_TAG) {
+        while (parser.next() != XmlPullParser.END_DOCUMENT) {
+            if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
             }
             String name = parser.getName();
             if (name.equals("action")) {
-               String category = parser.getAttributeValue(null, "category");
-               String path = parser.getAttributeValue(null, "path");
-               String event = parser.getAttributeValue(null, "event");
-               if(category.equals("eat")) {
-                   eat_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category, path, event));
-               }else if(category.equals("exercise")) {
-                   exercise_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category, path, event));
-               }else {
-                   sleep_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                           category, path, event));
-               }
+                String category = parser.getAttributeValue(null, "category");
+                String path = parser.getAttributeValue(null, "path");
+                String event = parser.getAttributeValue(null, "event");
+                if (category.equals("eat")) {
+                    eat_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
+                            category, path, event));
+                } else if (category.equals("exercise")) {
+                    exercise_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
+                            category, path, event));
+                } else {
+                    sleep_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
+                            category, path, event));
+                }
             }
         }
     }
 
+    private static void setActionsLocked(Context context, int save_id) {
+        final DatabaseConnector dbConnector = new DatabaseConnector(context);
+        dbConnector.open();
+        Cursor currentActions = dbConnector.getActions(save_id);
+        currentActions.moveToFirst();
+        // current values for eat, exercise & sleep, they determine what actions can & can't be seen
+        int action_eat_num = currentActions.getInt(currentActions.getColumnIndex("action_eat_num"));
+        int action_exercise_num = currentActions.getInt(currentActions.getColumnIndex("action_exercise_num"));
+        int action_sleep_num = currentActions.getInt(currentActions.getColumnIndex("action_sleep_num"));
+        for(int i = 0; i < eat_actions.size(); i++) {
+            Log.d(ManfredActivity.TAG, "" + i + " " + action_eat_num + " " + (((action_eat_num >> i) & 1) == 1));
+            eat_actions.get(i).setUnlocked(((action_eat_num >> i) & 1) == 0);
+        }
+        for(int i = 0; i < exercise_actions.size(); i++) {
+            exercise_actions.get(i).setUnlocked(((action_exercise_num >> i) & 1) == 0);
+        }
+        for(int i = 0; i < sleep_actions.size(); i++) {
+            sleep_actions.get(i).setUnlocked(((action_sleep_num >> i) & 1) == 0);
+        }
+    }
+
     public static ArrayList<ActionWrapper> getActions(String category) {
-        if(category.equals("eat")) {
+        if (category.equals("eat")) {
             return eat_actions;
-        }else if(category.equals("exercise")) {
+        } else if (category.equals("exercise")) {
             return exercise_actions;
-        }else {
+        } else {
             return sleep_actions;
         }
     }
@@ -105,7 +126,7 @@ public class Action {
         int deadlift = currentStats.getInt(currentStats.getColumnIndex("deadlift"));
         int squat = currentStats.getInt(currentStats.getColumnIndex("squat"));
 
-        if(action.getPath().equals("healthy")) {
+        if (action.getPath().equals("healthy")) {
             // TODO: See comment below
 
             /**
@@ -113,15 +134,15 @@ public class Action {
              * Also, default stat changes have been made based on an action, need to be changed
              */
 
-            num_healthy_actions+=1;
-            weight-=1;
-            cholesterol-=1;
-            bench_press+=2;
-            deadlift+=1;
-            squat+=1;
-            dbConnector.updateStatsForAction(save_id,weight,cholesterol,bench_press,deadlift,squat);
-            dbConnector.addHealthyAction(save_id,action_eat_num,action_sleep_num,action_exercise_num,num_healthy_actions);
-            Log.d(TAG, "num_healthy_actions = "+num_healthy_actions+", id for Manfred = "+save_id);
+            num_healthy_actions += 1;
+            weight -= 1;
+            cholesterol -= 1;
+            bench_press += 2;
+            deadlift += 1;
+            squat += 1;
+            dbConnector.updateStatsForAction(save_id, weight, cholesterol, bench_press, deadlift, squat);
+            dbConnector.addHealthyAction(save_id, action_eat_num, action_sleep_num, action_exercise_num, num_healthy_actions);
+            Log.d(TAG, "num_healthy_actions = " + num_healthy_actions + ", id for Manfred = " + save_id);
         } else {
             // TODO: See comment below
 
@@ -130,26 +151,25 @@ public class Action {
              * Also, default stat changes have been made based on an action, need to be changed
              */
 
-            num_unhealthy_actions+=1;
-            weight+=1;
-            cholesterol+=1;
-            bench_press-=2;
-            deadlift-=1;
-            squat-=1;
-            dbConnector.updateStatsForAction(save_id,weight,cholesterol,bench_press,deadlift,squat);
-            dbConnector.addUnhealthyAction(save_id, action_eat_num,action_sleep_num,action_exercise_num,num_unhealthy_actions);
+            num_unhealthy_actions += 1;
+            weight += 1;
+            cholesterol += 1;
+            bench_press -= 2;
+            deadlift -= 1;
+            squat -= 1;
+            dbConnector.updateStatsForAction(save_id, weight, cholesterol, bench_press, deadlift, squat);
+            dbConnector.addUnhealthyAction(save_id, action_eat_num, action_sleep_num, action_exercise_num, num_unhealthy_actions);
         }
         //enter new time modified for this Manfred instance
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
-        dbConnector.updateCurrentGame(save_id,dateFormat.format(date));
+        dbConnector.updateCurrentGame(save_id, dateFormat.format(date));
 
         dbConnector.close();
-        // TODO: Add event to log
         try {
             ManfredLog.writeLog(context, action.getEvent(), save_id);
         } catch (Exception e) {
-            Log.d(ManfredActivity.TAG, e.getMessage());
+            Log.d(ManfredActivity.TAG, "applyAction: " + e.getMessage());
         }
     }
 }

@@ -2,7 +2,6 @@
 <actions>
     <action
         name="Onion Rings"
-        path="healthy"
         event="Manfred eats a sack of onion rings."
         path="unhealthy"
         category="eat"/>
@@ -13,7 +12,6 @@
         category="eat"/>
     <action
         name="32 Donuts"
-        path="healthy"
         event="Manfred scarfs down thirty-two donuts."
         path="unhealthy"
         category="eat"/>
@@ -29,7 +27,6 @@
         category="exercise"/>
     <action
         name="Watch TV"
-        path="healthy"
         event="Manfred sits down for some TV."
         path="unhealthy"
         category="exercise"/>
@@ -40,7 +37,6 @@
         category="exercise"/>
     <action
         name="Smoke a Cigarette"
-        path="healthy"
         event="Manfred gets off the couch and walks outside for a smoke."
         path="unhealthy"
         category="exercise"/>
@@ -51,8 +47,7 @@
         category="sleep"/>
     <action
         name="Sleep 7 Hours"
-        path="healthy"
         event="Manfred goes to bed and sleeps for a few hours."
-        path="unhealthy"
+        path="healthy"
         category="sleep"/>
 </actions>

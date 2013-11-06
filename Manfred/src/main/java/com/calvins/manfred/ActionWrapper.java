@@ -9,6 +9,7 @@ public class ActionWrapper {
     private String category;
     private String path;
     private String event;
+    private boolean unlocked;
 
     public ActionWrapper(String name, String category, String path, String event) {
         this.name = name;
@@ -31,6 +32,14 @@ public class ActionWrapper {
 
     public String getEvent() {
         return event;
+    }
+
+    public boolean getUnlocked() {
+        return unlocked;
+    }
+
+    public void setUnlocked(boolean unlocked) {
+        this.unlocked = unlocked;
     }
 
     @Override

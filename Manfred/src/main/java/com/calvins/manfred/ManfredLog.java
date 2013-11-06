@@ -69,14 +69,14 @@ public class ManfredLog {
     }
 
     public static ArrayList<String> getLog(Context context, int lines, int save_id) {
-        Log.d(ManfredActivity.TAG, "getLog called, log is size: " + log.size());
         if(log == null) {
             try {
                 loadLog(context, save_id);
             } catch (Exception e) {
-                Log.d(ManfredActivity.TAG, e.getMessage());
+                Log.d(ManfredActivity.TAG, "getLog: " + e.getMessage());
             }
         }
+        Log.d(ManfredActivity.TAG, "getLog called, log is size: " + log.size());
         ArrayList<String> clone;
         lock.lock();
         try {
