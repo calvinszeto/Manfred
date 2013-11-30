@@ -82,11 +82,12 @@ five major levels:
 
 ### Gameplay
 * Add delays to the events (High)
-* Add stat requirements to actions and action buttons (High)
 * Add the instructional overlay (Medium)
+* Add stat requirements to actions and action buttons (High)
+* Change the action layout to fill the screen width and be scrollable (High)
+* Add body changes after each major event (High)
 
 ### The Game Engine
-* Add major events (High)
-* Come up with the story (Medium)
-* Make a better algorithm for deciding stats changes (Medium)
-* Add habitual events (Medium)
+* Add stat changes, stat requirements, and story level to the actions (High)
+* Add the rest of the actions (High)
+* Add habitual events (Low)
