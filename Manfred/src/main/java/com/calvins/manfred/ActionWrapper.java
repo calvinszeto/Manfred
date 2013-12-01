@@ -6,15 +6,19 @@ package com.calvins.manfred;
 public class ActionWrapper {
 
     private String name;
-    private String category;
-    private String path;
     private String event;
+    private boolean major;
+    private int level;
+    private String stat_changes;
+    private String stat_requirements;
+    private String category;
     private boolean unlocked;
 
-    public ActionWrapper(String name, String category, String path, String event) {
+    public ActionWrapper(String name, String event, boolean major, int level,
+        String stat_changes, String stat_requirements, String category) {
         this.name = name;
         this.category = category;
-        this.path = path;
+        this.level = level;
         this.event = event;
     }
 
@@ -22,19 +26,59 @@ public class ActionWrapper {
         return name;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public String getPath() {
-        return path;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEvent() {
         return event;
     }
 
-    public boolean getUnlocked() {
+    public void setEvent(String event) {
+        this.event = event;
+    }
+
+    public boolean isMajor() {
+        return major;
+    }
+
+    public void setMajor(boolean major) {
+        this.major = major;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
+
+    public String getStat_changes() {
+        return stat_changes;
+    }
+
+    public void setStat_changes(String stat_changes) {
+        this.stat_changes = stat_changes;
+    }
+
+    public String getStat_requirements() {
+        return stat_requirements;
+    }
+
+    public void setStat_requirements(String stat_requirements) {
+        this.stat_requirements = stat_requirements;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
+
+    public boolean isUnlocked() {
         return unlocked;
     }
 

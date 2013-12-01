@@ -46,30 +46,47 @@ public class Action {
         setActionsLocked(context, save_id);
     }
 
+    /**
+     * Pull the actions from the actions.xml file and parse them into ActionWrapper objects.
+     *
+     * @param parser the XmlPullParser for traversing the actions.xml file
+     * @throws XmlPullParserException
+     * @throws IOException
+     */
     private static void parseActions(XmlPullParser parser) throws XmlPullParserException, IOException {
         while (parser.next() != XmlPullParser.END_DOCUMENT) {
+            // All attributes are in action standalone tags
             if (parser.getEventType() != XmlPullParser.START_TAG) {
                 continue;
             }
             String name = parser.getName();
             if (name.equals("action")) {
+                // Grab all the attributes out of the tag
                 String category = parser.getAttributeValue(null, "category");
-                String path = parser.getAttributeValue(null, "path");
-                String event = parser.getAttributeValue(null, "event");
+                // Create a new ActionWrapper and add it to the appropriate List
+                ActionWrapper action = new ActionWrapper(parser.getAttributeValue(null, "name"),
+                   parser.getAttributeValue(null, "event"),
+                   Boolean.valueOf(parser.getAttributeValue(null, "major")),
+                   Integer.parseInt(parser.getAttributeValue(null, "level")),
+                   parser.getAttributeValue(null, "stat_changes"),
+                   parser.getAttributeValue(null, "stat_requirements"),
+                   category);
                 if (category.equals("eat")) {
-                    eat_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                            category, path, event));
+                    eat_actions.add(action);
                 } else if (category.equals("exercise")) {
-                    exercise_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                            category, path, event));
+                    exercise_actions.add(action);
                 } else {
-                    sleep_actions.add(new ActionWrapper(parser.getAttributeValue(null, "name"),
-                            category, path, event));
+                    sleep_actions.add(action);
                 }
             }
         }
     }
 
+    /**
+     * Pull the user's lock/unlock code from the database and set the ActionWrapper accordingly
+     * @param context
+     * @param save_id
+     */
     private static void setActionsLocked(Context context, int save_id) {
         final DatabaseConnector dbConnector = new DatabaseConnector(context);
         dbConnector.open();
@@ -79,18 +96,23 @@ public class Action {
         int action_eat_num = currentActions.getInt(currentActions.getColumnIndex("action_eat_num"));
         int action_exercise_num = currentActions.getInt(currentActions.getColumnIndex("action_exercise_num"));
         int action_sleep_num = currentActions.getInt(currentActions.getColumnIndex("action_sleep_num"));
-        for(int i = 0; i < eat_actions.size(); i++) {
+        for (int i = 0; i < eat_actions.size(); i++) {
             Log.d(ManfredActivity.TAG, "" + i + " " + action_eat_num + " " + (((action_eat_num >> i) & 1) == 1));
             eat_actions.get(i).setUnlocked(((action_eat_num >> i) & 1) == 0);
         }
-        for(int i = 0; i < exercise_actions.size(); i++) {
+        for (int i = 0; i < exercise_actions.size(); i++) {
             exercise_actions.get(i).setUnlocked(((action_exercise_num >> i) & 1) == 0);
         }
-        for(int i = 0; i < sleep_actions.size(); i++) {
+        for (int i = 0; i < sleep_actions.size(); i++) {
             sleep_actions.get(i).setUnlocked(((action_sleep_num >> i) & 1) == 0);
         }
     }
 
+    /**
+     * Get the List of ActionWrappers for the given category
+     * @param category
+     * @return
+     */
     public static ArrayList<ActionWrapper> getActions(String category) {
         if (category.equals("eat")) {
             return eat_actions;
@@ -101,6 +123,14 @@ public class Action {
         }
     }
 
+    /**
+     * Apply an Action: change the stats, reapply Action locks, and add the event to the log
+     * @param action_id
+     * @param category
+     * @param save_id
+     * @param dbConnector
+     * @param context
+     */
     public static void applyAction(int action_id, String category, int save_id, DatabaseConnector dbConnector, Context context) {
         ActionWrapper action = getActions(category).get(action_id);
 
@@ -126,7 +156,7 @@ public class Action {
         int deadlift = currentStats.getInt(currentStats.getColumnIndex("deadlift"));
         int squat = currentStats.getInt(currentStats.getColumnIndex("squat"));
 
-        if (action.getPath().equals("healthy")) {
+        if (true) {//(action.getPath().equals("healthy")) {
             // TODO: See comment below
 
             /**

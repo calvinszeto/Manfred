@@ -81,6 +81,7 @@ five major levels:
 * Add action category fragment to action item layout (Low)
 
 ### Gameplay
+* Change the stats to the new stats
 * Add delays to the events (High)
 * Add the instructional overlay (Medium)
 * Add stat requirements to actions and action buttons (High)
@@ -88,6 +89,9 @@ five major levels:
 * Add body changes after each major event (High)
 
 ### The Game Engine
-* Add stat changes, stat requirements, and story level to the actions (High)
+* Add a level attribute to a save in the database
+* Remove the counts from the save in the database
+* Update the Action#setActionLocked to consider level and stat_requirements
+* Update Action#applyAction to use the new stat_changes attribute
 * Add the rest of the actions (High)
 * Add habitual events (Low)

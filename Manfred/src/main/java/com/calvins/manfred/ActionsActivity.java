@@ -68,7 +68,7 @@ public class ActionsActivity extends Activity {
             // Set the text accordingly
             button.setText(values.get(position).toString());
             // Locked actions are gray and unclickable
-            if(values.get(position).getUnlocked()) {
+            if(values.get(position).isUnlocked()) {
                 button.setBackgroundColor(getResources().getColor(R.color.Gray));
                 // Ironically, we set the button as clickable to make it unclickable
                 // The Button click overrides the GridView onItemClickListener

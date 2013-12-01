@@ -1,53 +1,474 @@
 <?xml version="1.0" encoding="utf-8"?>
 <actions>
+    <!-- action
+        name = Name of the Action.
+        event = The text that appears in the log.
+        major = true if this is a major Action, false otherwise.
+        level = The story level
+        stat_changes = Stat changes from doing this Action
+            stats are slash-delimited and in order:
+            Weight/VO2-max/Squat/Body-Fat
+            e.g. "10/-2/-5/3"
+        stat_requirements = Stat requirements to unlock this Action
+            stats are slash-delimited and in order:
+            Weight/VO2-max/Squat/Body-Fat
+            e.g. "200/40/140/20"
+        category = The category of Action
+        /-->
+    <!-- Fit Path, Level 1-->
     <action
-        name="Onion Rings"
-        event="Manfred eats a sack of onion rings."
-        path="unhealthy"
-        category="eat"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
     <action
-        name="Grilled Chicken"
-        path="healthy"
-        event="Manfred eats a big grilled chicken."
-        category="eat"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
     <action
-        name="32 Donuts"
-        event="Manfred scarfs down thirty-two donuts."
-        path="unhealthy"
-        category="eat"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
     <action
-        name="A Cow"
-        path="healthy"
-        event="Manfred eats a cow."
-        category="eat"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
     <action
-        name="Run a Mile"
-        path="healthy"
-        event="Manfred runs a mile."
-        category="exercise"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
     <action
-        name="Watch TV"
-        event="Manfred sits down for some TV."
-        path="unhealthy"
-        category="exercise"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
     <action
-        name="Swim a Mile"
-        path="healthy"
-        event="Manfred heads to the ocean to swim a mile."
-        category="exercise"/>
+        name="Run a Marathon"
+        event=""
+        major="true"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <!-- Fat Path, Level 1-->
     <action
-        name="Smoke a Cigarette"
-        event="Manfred gets off the couch and walks outside for a smoke."
-        path="unhealthy"
-        category="exercise"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
     <action
-        name="Nap 30 Minutes"
-        path="healthy"
-        event="Manfred naps on the couch for twenty minutes."
-        category="sleep"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
     <action
-        name="Sleep 7 Hours"
-        event="Manfred goes to bed and sleeps for a few hours."
-        path="healthy"
-        category="sleep"/>
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name="Walk to the BBQ Festival"
+        event=""
+        major="true"
+        level="1"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <!-- Fit Path, Level 2-->
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name="Go buy a home gym"
+        event=""
+        major="true"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <!-- Fat Path, Level 2-->
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name="Go buy a pork butt"
+        event=""
+        major="true"
+        level="2"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <!-- Fit Path, Level 3-->
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name="Build an armory"
+        event=""
+        major="true"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <!-- Fat Path, Level 3-->
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name="Join the Revolutionaries"
+        event=""
+        major="true"
+        level="3"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <!-- Fit Path, Level 4-->
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name="Assassinate the Revolutionary Leader"
+        event=""
+        major="true"
+        level="4"
+        stat_changes="0/0/0"
+        stat_requirements=""
+        category="Exercise"/>
+    <!-- Fat Path, Level 4-->
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Eat"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Sleep"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name=""
+        event=""
+        major="false"
+        level="4"
+        stat_changes=""
+        stat_requirements=""
+        category="Exercise"/>
+    <action
+        name="Give a War-Ending Speech"
+        event=""
+        major="true"
+        level="4"
+        stat_changes="0/0/0"
+        stat_requirements=""
+        category="Exercise"/>
 </actions>
