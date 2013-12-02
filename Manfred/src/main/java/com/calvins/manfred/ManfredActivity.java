@@ -147,7 +147,7 @@ public class ManfredActivity extends Activity {
             button_to_delay.setBackgroundColor(getResources().getColor(R.color.DarkGray));
             long millisUntilDone;
             if (easy_delays) {
-                millisUntilDone = 1000;
+                millisUntilDone = 0;
             } else {
                 millisUntilDone = mPrefs.getLong("millisUntilEatDone", 3000);
                 if (millisUntilDone == 0) {
@@ -170,7 +170,7 @@ public class ManfredActivity extends Activity {
             button_to_delay.setBackgroundColor(getResources().getColor(R.color.DarkGray));
             long millisUntilDone;
             if (easy_delays) {
-                millisUntilDone = 1000;
+                millisUntilDone = 0;
             } else {
                 millisUntilDone = mPrefs.getLong("millisUntilEatDone", 3000);
                 if (millisUntilDone == 0) {
