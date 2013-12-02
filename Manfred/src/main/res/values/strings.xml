@@ -12,6 +12,8 @@
     <string name="pref_sound_summ">Turn on sounds in the game.</string>
     <string name="pref_animation">Animation</string>
     <string name="pref_animation_summ">Turn on animations in the game.</string>
+    <string name="pref_delays">Easy Mode</string>
+    <string name="pref_delays_summ">Remove all delays.</string>
     <string name="eat_button">Eat</string>
     <string name="exercise_button">Exercise</string>
     <string name="sleep_button">Sleep</string>

@@ -21,6 +21,7 @@ import android.widget.GridView;
 import android.content.Intent;
 import android.content.Context;
 import android.util.Log;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -42,9 +43,9 @@ public class ActionsActivity extends Activity {
         final Activity activity = this;
 
         GridView gridview = (GridView) findViewById(R.id.actions_grid);
-        // The adapter for the actions
-        ActionsAdapter adapter = new ActionsAdapter(this, Action.getActions(category));
         final DatabaseConnector dbConnector = new DatabaseConnector(ActionsActivity.this);
+        // The adapter for the actions
+        ActionsAdapter adapter = new ActionsAdapter(this, Action.getActions(category, save_id, dbConnector));
         gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {

@@ -48,13 +48,10 @@ public class DatabaseConnector {
 
         ContentValues newManfredActions = new ContentValues();
         newManfredActions.put("_id",id);
-        newManfredActions.put("action_eat_num", 3);
-        newManfredActions.put("action_sleep_num", 3);
-        newManfredActions.put("action_exercise_num", 3);
         newManfredActions.put("num_eat_total", 0);
         newManfredActions.put("num_sleep_total", 0);
         newManfredActions.put("num_exercise_total", 0);
-        newManfredActions.put("current_action_level", 1);
+        newManfredActions.put("current_action_level", 5);
         database.insert("actions",null,newManfredActions);
 
         ContentValues newManfredStats = new ContentValues();
@@ -96,13 +93,6 @@ public class DatabaseConnector {
     public Cursor getName(int _id) {
         String id = _id+"";
         return database.query("manfred", new String[]{"name"},
-                "_id = ?", new String[]{id}, null, null, null);
-    }
-
-    //Returns actions of this Manfred instance
-    public Cursor getActions(int _id) {
-        String id = _id+"";
-        return database.query("actions", new String[]{"action_eat_num", "action_sleep_num", "action_exercise_num"},
                 "_id = ?", new String[]{id}, null, null, null);
     }
 
@@ -151,21 +141,10 @@ public class DatabaseConnector {
             col = "num_exercise_total";
         open();
         int new_val = getTotalNumAction(_id,col)+1;
+        Log.d(ManfredActivity.TAG, "Updating " + col + " to " + new_val);
         ContentValues editTotalAction = new ContentValues();
         editTotalAction.put(col, new_val);
         database.update("actions",editTotalAction,"_id="+_id,null);
-        close();
-    }
-
-    //Updates Manfred instance to reflect an action click
-    public void addAction(int _id, int eat, int sleep, int exercise) {
-        ContentValues editAction = new ContentValues();
-        editAction.put("action_eat_num", eat);
-        editAction.put("action_sleep_num", sleep);
-        editAction.put("action_exercise_num", exercise);
-
-        open();
-        database.update("actions", editAction, "_id="+_id, null);
         close();
     }
 
@@ -216,9 +195,6 @@ public class DatabaseConnector {
 
             String createActions = "CREATE TABLE actions" +
                     "(_id INTEGER PRIMARY KEY, "+
-                    "action_eat_num INTEGER, "+
-                    "action_sleep_num INTEGER, "+
-                    "action_exercise_num INTEGER, "+
                     "num_eat_total INTEGER, "+
                     "num_sleep_total INTEGER, "+
                     "num_exercise_total INTEGER, "+
