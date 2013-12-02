@@ -66,7 +66,7 @@
         category="Exercise"/>
     <action
         name="Run a Marathon"
-        event=""
+        event="Manfred heads to the park for his annual marathon. Halfway through the third mile, Manfred hears screams from across the park. Riots are breaking out in protest of the new Prime Minister. Manfred flees from all the chaos and runs straight home."
         major="true"
         level="4"
         stat_changes="0/0/0/0"
@@ -78,7 +78,7 @@
         event="Manfred eats some delicious fried chicken."
         major="false"
         level="5"
-        stat_changes="2/0/0/0"
+        stat_changes="2/0/-2/0"
         stat_requirements="0/0/0/0"
         category="Eat"/>
     <action
@@ -118,35 +118,35 @@
         event="Manfred opens up his laptop and browses some forums."
         major="false"
         level="5"
-        stat_changes="0/0/-2/0"
+        stat_changes="0/0/-3/0"
         stat_requirements="0/l40/0/0"
         category="Exercise"/>
     <action
         name="Walk to the BBQ Festival"
-        event=""
+        event="Manfred heads to the park for the annual barbecue festival. Right as he digs into his plate, screams break out from across the park. Riots have begun in protest of the new Prime Minister. In fear that the rioters will crash the festival, Manfred devours as much barbecue as he can."
         major="true"
         level="6"
         stat_changes="0/0/0/0"
         stat_requirements="g180/l37/l85/g20"
         category="Exercise"/>
     <!-- Fit Path, Level 2-->
-    <!--action
+    <action
         name="Eat a lean steak"
-        event=""
+        event="Manfred puts a lean steak in the oven for a few minutes. He cooks it rare and eats it slowly."
         major="false"
-        level="2"
-        stat_changes=""
-        stat_requirements=""
+        level="4"
+        stat_changes="4/0/0/0"
+        stat_requirements="0/0/0/0"
         category="Eat"/>
     <action
         name="Eat a head of lettuce"
-        event=""
+        event="Manfred grabs a head of lettuce from the fridge and eats it like a cookie."
         major="false"
-        level="2"
-        stat_changes=""
-        stat_requirements=""
+        level="4"
+        stat_changes="0/0/0/-1"
+        stat_requirements="g148/0/0/0"
         category="Eat"/>
-    <action
+    <!--action
         name=""
         event=""
         major="false"
@@ -161,49 +161,49 @@
         level="2"
         stat_changes=""
         stat_requirements=""
-        category="Sleep"/>
+        category="Sleep"/-->
     <action
         name="Run some sprints"
-        event=""
+        event="Manfred sprints up and down his driveway over a hundred times."
         major="false"
-        level="2"
-        stat_changes=""
-        stat_requirements=""
+        level="4"
+        stat_changes="0/2/10/0"
+        stat_requirements="0/0/0/0"
         category="Exercise"/>
     <action
         name="Go to the gym"
-        event=""
+        event="Manfred walks over to the neighborhood gym for a pump."
         major="false"
-        level="2"
-        stat_changes=""
-        stat_requirements=""
+        level="4"
+        stat_changes="0/0/35/0"
+        stat_requirements="0/g55/g190/0"
         category="Exercise"/>
     <action
         name="Go buy a home gym"
-        event=""
+        event="Manfred decides to save some money and buy his own home gym. While Manfred browses the selection of power racks, a loud explosion is heard from the front of the store. Screams and shouts are heard all around. War has broken out. Manfred, in a fit of emotions, grabs everything he can carry and runs home to shelter the storm."
         major="true"
-        level="2"
-        stat_changes=""
+        level="3"
+        stat_changes="0/0/0/0"
         stat_requirements="g165/g66/g300/l9"
-        category="Exercise"/-->
+        category="Exercise"/>
     <!-- Fat Path, Level 2-->
-    <!-- action
+    <action
         name="Eat a Big Mac"
-        event=""
+        event="Manfred goes to a McDonald's drive-thru and eats nearly fifty Big Macs."
         major="false"
-        level="2"
-        stat_changes=""
-        stat_requirements=""
+        level="6"
+        stat_changes="8/0/0/1"
+        stat_requirements="0/0/0/0"
         category="Eat"/>
     <action
         name="Eat a dozen donuts"
-        event=""
+        event="Manfred orders a baker's dozen of Texas-sized donuts and eats them with a fork and knife."
         major="false"
-        level="2"
-        stat_changes=""
-        stat_requirements=""
+        level="6"
+        stat_changes="0/-2/0/2"
+        stat_requirements="0/l33/0/0"
         category="Eat"/>
-    <action
+    <!--action
         name=""
         event=""
         major="false"
@@ -218,49 +218,49 @@
         level="2"
         stat_changes=""
         stat_requirements=""
-        category="Sleep"/>
+        category="Sleep"/-->
     <action
-        name=""
-        event=""
+        name="Do nothing"
+        event="Manfred masters the art of meditation by laying dormant in the sofa."
         major="false"
-        level="2"
-        stat_changes=""
-        stat_requirements=""
+        level="6"
+        stat_changes="0/-2/0/2"
+        stat_requirements="0/0/0/0"
         category="Exercise"/>
     <action
-        name=""
-        event=""
+        name="Watch Television"
+        event="Manfred kicks up the recliner and watches some local news. There seems to be a lot of civil unrest."
         major="false"
-        level="2"
-        stat_changes=""
-        stat_requirements=""
+        level="6"
+        stat_changes="0/0/-5/0"
+        stat_requirements="g210/0/0/0"
         category="Exercise"/>
     <action
         name="Go buy a pork butt"
-        event=""
+        event="Manfred, after watching some Food Network, has a hankering for some pork butt. He heads to the local store, where he immediately encounters an angry citizen setting off an explosive device. Manfred dives for cover in the frozen foods section. War has officially broken out in the country. Manfred grabs as much food as he can and runs for home, but only lasts a few minutes before he gets tired and stops by a local homeless shelter."
         major="true"
-        level="2"
-        stat_changes=""
+        level="7"
+        stat_changes="0/0/0/0"
         stat_requirements="g210/l25/l65/g27"
-        category="Exercise"/-->
+        category="Exercise"/>
     <!-- Fit Path, Level 3-->
-    <!--action
+    <action
         name="Eat a box of broccoli"
-        event=""
+        event="Manfred opens up a box of broccoli from the basement and eats each floret like it's his last."
         major="false"
         level="3"
-        stat_changes=""
-        stat_requirements=""
+        stat_changes="0/0/50/-1"
+        stat_requirements="0/0/0/0"
         category="Eat"/>
     <action
         name="Take some creatine"
-        event=""
+        event="Manfred puts some creatine in his water in hopes of beefing up."
         major="false"
         level="3"
-        stat_changes=""
-        stat_requirements=""
+        stat_changes="20/0/0/0"
+        stat_requirements="0/0/0/l7"
         category="Eat"/>
-    <action
+    <!--action
         name=""
         event=""
         major="false"
@@ -275,49 +275,49 @@
         level="3"
         stat_changes=""
         stat_requirements=""
-        category="Sleep"/>
+        category="Sleep"/-->
     <action
         name="Flip a tire"
-        event=""
+        event="Manfred heads to the backyard to flip some tractor tires. They're heavy!"
         major="false"
         level="3"
-        stat_changes=""
-        stat_requirements=""
+        stat_changes="0/18/0/0"
+        stat_requirements="0/0/0/0"
         category="Exercise"/>
     <action
         name="Do the Russian squat routine"
-        event=""
+        event="Manfred tackles the rack for six weeks of grueling, high-intensity squats."
         major="false"
         level="3"
-        stat_changes=""
-        stat_requirements=""
+        stat_changes="0/0/100/-2"
+        stat_requirements="0/g85/0/0"
         category="Exercise"/>
     <action
         name="Build an armory"
-        event=""
+        event="Manfred, tired of hiding in his home, decides to plan his own attack. He hears of a local revolutionary group hoping to take control of the war and bring peace. Manfred wants to end the war on his own terms. He builds a small armory in his garage and trains to assassinate the revolutionary leader."
         major="true"
-        level="3"
-        stat_changes=""
-        stat_requirements="g200/g100/g100/l4"
-        category="Exercise"/-->
+        level="2"
+        stat_changes="0/0/0/0"
+        stat_requirements="g200/g100/g1000/l4"
+        category="Exercise"/>
     <!-- Fat Path, Level 3-->
-    <!--action
+    <action
         name="Eat some Spam"
-        event=""
+        event="Manfred conjures up a can of Spam and fries it up into crispy oily goodness."
         major="false"
-        level="3"
-        stat_changes=""
-        stat_requirements=""
+        level="7"
+        stat_changes="0/-3/0/2"
+        stat_requirements="0/0/0/0"
         category="Eat"/>
     <action
         name="Eat that pork butt"
-        event=""
+        event="Manfred tears off a piece of the pork butt he salvaged from the store and munches on it."
         major="false"
-        level="3"
-        stat_changes=""
-        stat_requirements=""
+        level="7"
+        stat_changes="10/0/0/0"
+        stat_requirements="0/0/l80/g23"
         category="Eat"/>
-    <action
+    <!--action
         name=""
         event=""
         major="false"
@@ -332,49 +332,50 @@
         level="3"
         stat_changes=""
         stat_requirements=""
-        category="Sleep"/>
+        category="Sleep"/-->
     <action
-        name=""
-        event=""
+        name="Do a squat"
+        event="Manfred squats down. He falls backward."
         major="false"
-        level="3"
-        stat_changes=""
-        stat_requirements=""
+        level="7"
+        stat_changes="0/0/-5/0"
+        stat_requirements="0/0/0/0"
         category="Exercise"/>
     <action
-        name=""
-        event=""
+        name="Build a chair"
+        event="Manfred flips over a nearby box. A stranger comes and sits on it; they have a delightful
+        conversation."
         major="false"
-        level="3"
-        stat_changes=""
-        stat_requirements=""
+        level="7"
+        stat_changes="0/-5/0/0"
+        stat_requirements="0/0/l70/0"
         category="Exercise"/>
     <action
         name="Join the Revolutionaries"
-        event=""
+        event="Manfred, having become the center of gossip amongst the homeless shelter, decides to take leadership to end the war. He rounds up a group of revolutionaries, and speaks of a day where peace takes over the country and they can rebuild their lives into something better."
         major="true"
-        level="3"
-        stat_changes=""
+        level="8"
+        stat_changes="0/0/0/0"
         stat_requirements="g250/l10/l40/g35"
-        category="Exercise"/-->
+        category="Exercise"/>
     <!-- Fit Path, Level 4-->
-    <!--action
+    <action
         name="Eat some crickets"
-        event=""
+        event="Manfred digs up a bunch of crickets from the yard for lunch. Protein!"
         major="false"
-        level="4"
-        stat_changes=""
-        stat_requirements=""
+        level="2"
+        stat_changes="0/0/0/-1"
+        stat_requirements="0/0/0/0"
         category="Eat"/>
     <action
         name="Drink a vegetable drink"
-        event=""
+        event="Manfred cracks open a jar of vegetable powder and makes an interesting drink."
         major="false"
-        level="4"
-        stat_changes=""
-        stat_requirements=""
+        level="2"
+        stat_changes="0/30/300/0"
+        stat_requirements="0/0/0/l1"
         category="Eat"/>
-    <action
+    <!--action
         name=""
         event=""
         major="false"
@@ -389,49 +390,49 @@
         level="4"
         stat_changes=""
         stat_requirements=""
-        category="Sleep"/>
+        category="Sleep"/-->
     <action
         name="Flip a car"
-        event=""
+        event="Manfred heads to the front yard and flips over his car. It's heavy!"
         major="false"
-        level="4"
-        stat_changes=""
-        stat_requirements=""
+        level="2"
+        stat_changes="0/0/500/0"
+        stat_requirements="0/0/g2000/0"
         category="Exercise"/>
     <action
         name="Crush some steel"
-        event=""
+        event="Manfred finds a steel bar and rolls it up with his bare hands."
         major="false"
-        level="4"
-        stat_changes=""
-        stat_requirements=""
+        level="2"
+        stat_changes="-10/10/0/0"
+        stat_requirements="0/0/0/l1"
         category="Exercise"/>
     <action
         name="Assassinate the Revolutionary Leader"
-        event=""
+        event="TO BE CONTINUED..."
         major="true"
-        level="4"
+        level="1"
         stat_changes="0/0/0/0"
         stat_requirements="l180/g200/g4000/l0"
-        category="Exercise"/-->
+        category="Exercise"/>
     <!-- Fat Path, Level 4-->
-    <!--action
+    <action
         name="Eat a very old Big Mac"
-        event=""
+        event="Manfred finds a box of old uneaten Big Macs in the trash. They look like they've been sitting for years."
         major="false"
-        level="4"
-        stat_changes=""
-        stat_requirements=""
+        level="8"
+        stat_changes="200/0/0/4"
+        stat_requirements="0/0/0/0"
         category="Eat"/>
     <action
         name="Eat some Crisco soup"
-        event=""
+        event="Manfred and his friends heat up a big jar of Crisco into a delicious soup."
         major="false"
-        level="4"
-        stat_changes=""
-        stat_requirements=""
+        level="8"
+        stat_changes="300/0/0/2"
+        stat_requirements="g600/0/0/g59"
         category="Eat"/>
-    <action
+    <!--action
         name=""
         event=""
         major="false"
@@ -446,29 +447,29 @@
         level="4"
         stat_changes=""
         stat_requirements=""
-        category="Sleep"/>
+        category="Sleep"/-->
     <action
-        name=""
-        event=""
+        name="Do vocal exercises"
+        event="Manfred practices some vocal exercises in preparation for a big speech."
         major="false"
-        level="4"
-        stat_changes=""
-        stat_requirements=""
+        level="8"
+        stat_changes="0/5/0/0"
+        stat_requirements="0/0/0/0"
         category="Exercise"/>
     <action
-        name=""
-        event=""
+        name="Hibernate"
+        event="Manfred hibernates for the winter."
         major="false"
-        level="4"
-        stat_changes=""
-        stat_requirements=""
+        level="8"
+        stat_changes="400/5/0/3"
+        stat_requirements="0/g30/0/0"
         category="Exercise"/>
     <action
         name="Give a War-Ending Speech"
-        event=""
+        event="TO BE CONTINUED..."
         major="true"
-        level="4"
+        level="9"
         stat_changes="0/0/0/0"
         stat_requirements="g1000/g20/l20/g60"
-        category="Exercise"/-->
+        category="Exercise"/>
 </actions>

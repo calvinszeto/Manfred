@@ -76,10 +76,8 @@ five major levels:
 ## Todos (Priority)
 
 ### Gameplay
-* Add the instructional overlay (Harish)
 
 ### The Game Engine
-* Add the rest of the actions (Harish/Calvin)
 * Add special stuff for the end game (Probably won't do this)
 
 ### General Android (Probably won't do any of this)
