@@ -76,8 +76,6 @@ five major levels:
 ## Todos (Priority)
 
 ### Gameplay
-* Change the stats to the new stats (Harish)
-* Add delays to the events (Harish)
 * Add the instructional overlay (Harish)
 * Add stat requirements to actions and action buttons (Calvin)
 * Change the action layout to fill the screen width and be scrollable (Calvin)
@@ -85,9 +83,7 @@ five major levels:
 
 ### The Game Engine
 * Add a level attribute to a save in the database (Harish)
-* Remove the counts from the save in the database and add counts for actions instead (Harish)
-* Update the Action#setActionLocked to consider level and stat_requirements (Calvin)
-* Update Action#applyAction to use the new stat_changes attribute (Calvin)
+* Add counts for actions in the database (Harish)
 * Update Action#getActions to only return actions for the current level or down (Calvin)
 * Add the rest of the actions (Harish/Calvin)
 
