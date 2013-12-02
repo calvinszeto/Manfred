@@ -181,7 +181,10 @@ public class ManfredActivity extends Activity {
 
         // Create sound
         mSounds = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
-        createSound();
+        if(PreferenceManager.getDefaultSharedPreferences(this).getBoolean("pref_sound", true)) {
+            createSound();
+        }
+        mPrefs.edit().putInt("action_sound", 0).commit();
 
         eat_delay = mPrefs.getInt("eat_delay",0);
         sleep_delay = mPrefs.getInt("sleep_delay",0);
@@ -314,7 +317,6 @@ public class ManfredActivity extends Activity {
                 }
             });
         }
-        mPrefs.edit().putInt("action_sound", 0).commit();
     }
 
     public class MyCountDownTimer extends CountDownTimer {

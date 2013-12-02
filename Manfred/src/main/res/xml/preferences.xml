@@ -8,12 +8,6 @@
         android:defaultValue="true" />
 
     <CheckBoxPreference
-        android:key="pref_animation"
-        android:title="@string/pref_animation"
-        android:summary="@string/pref_animation_summ"
-        android:defaultValue="true" />
-
-    <CheckBoxPreference
         android:key="pref_delays"
         android:title="@string/pref_delays"
         android:summary="@string/pref_delays_summ"
