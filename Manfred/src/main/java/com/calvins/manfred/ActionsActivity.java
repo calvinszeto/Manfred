@@ -50,12 +50,19 @@ public class ActionsActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Action.applyAction((int) id, category, save_id, dbConnector, activity);
-                if (category.equals("eat"))
+                if (category.equals("eat")) {
+                    mPrefs.edit().putInt("action_sound",1).commit();
                     mPrefs.edit().putInt("eat_delay", 1).commit();
-                else if (category.equals("sleep"))
+                }
+
+                else if (category.equals("sleep")) {
+                    mPrefs.edit().putInt("action_sound",2).commit();
                     mPrefs.edit().putInt("sleep_delay", 1).commit();
-                else
+                }
+                else {
+                    mPrefs.edit().putInt("action_sound",3).commit();
                     mPrefs.edit().putInt("exercise_delay", 1).commit();
+                }
                 finish();
             }
         });

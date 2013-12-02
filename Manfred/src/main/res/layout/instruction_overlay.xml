@@ -55,10 +55,9 @@
         android:text="@string/manfred_description"
         android:textColor="@color/White"
         android:textStyle="bold"
-        android:layout_marginRight="10dp"
-        android:layout_alignBottom="@+id/down_arrow"
-        android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@+id/down_arrow" />
+        android:layout_below="@+id/left_arrow"
+        android:layout_alignParentRight="true"
+        android:layout_alignLeft="@+id/actions_info" />
 
     <ImageView
         android:id="@+id/down_arrow"
@@ -77,9 +76,9 @@
         android:text="@string/log_description"
         android:textColor="@color/White"
         android:textStyle="bold"
-        android:layout_below="@+id/left_arrow"
-        android:layout_toRightOf="@+id/up_arrow"
-        android:layout_alignRight="@+id/left_arrow" />
+        android:layout_above="@+id/instruction_done"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/down_arrow" />
 
     <Button
         android:id="@+id/instruction_done"
@@ -89,7 +88,6 @@
         android:text="@string/start_playing"
         android:onClick="finishInstruction"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_below="@+id/manfred_info" />
+        android:layout_alignParentLeft="true" />
 
 </RelativeLayout>

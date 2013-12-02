@@ -4,6 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Gravity;
@@ -32,10 +35,17 @@ public class ManfredActivity extends Activity {
     public static final String TAG = "ManfredActivity";
     private int save_id;
 
+    // variables that deal with sound
+    private SoundPool mSounds;
+    private int mEatSoundID;
+    private int mSleepSoundID;
+    private int mExerciseSoundID;
+
     // variables to deal with instructional popup
     private PopupWindow instruct_popup;
     private PopupWindow dim;
 
+    // variables to deal with storage
     private SharedPreferences mPrefs;
     private DatabaseConnector dbConnector;
 
@@ -117,11 +127,6 @@ public class ManfredActivity extends Activity {
             instruct_popup.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
             instruct_popup.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
             instruct_popup.showAtLocation(this.findViewById(R.id.container), Gravity.CENTER,0,0);
-
-            //btnClosePopup = (Button)layout.findViewById(R.id.popup_back);
-            //btnClosePopup.setOnClickListener(back_button_click_listener);
-            //btnPlayManfred = (Button)layout.findViewById(R.id.popup_play);
-            //btnPlayManfred.setOnClickListener(play_button_click_listener);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -168,6 +173,18 @@ public class ManfredActivity extends Activity {
     protected void onResume() {
         super.onResume();
 
+        if(dim!=null)
+            dim.dismiss();
+        if(instruct_popup!=null)
+            instruct_popup.dismiss();
+
+        // Create sound
+        mSounds = new SoundPool(2, AudioManager.STREAM_MUSIC, 0);
+        createSound();
+
+        eat_delay = mPrefs.getInt("eat_delay",0);
+        sleep_delay = mPrefs.getInt("sleep_delay",0);
+        exercise_delay = mPrefs.getInt("exercise_delay",0);
         // Set Manfred image
         DatabaseConnector dbc = new DatabaseConnector(this);
         dbc.open();
@@ -175,14 +192,6 @@ public class ManfredActivity extends Activity {
         ImageView imageView = (ImageView) findViewById(R.id.manfred_image);
         imageView.setImageResource(getResources().getIdentifier("manfred" + level, "drawable", getPackageName()));
         dbc.close();
-        if(dim!=null)
-            dim.dismiss();
-        if(instruct_popup!=null)
-            instruct_popup.dismiss();
-
-        eat_delay = mPrefs.getInt("eat_delay",0);
-        sleep_delay = mPrefs.getInt("sleep_delay",0);
-        exercise_delay = mPrefs.getInt("exercise_delay",0);
 
         // Grab all saved delays
         eat_delay = mPrefs.getInt("eat_delay", 0);
@@ -199,14 +208,7 @@ public class ManfredActivity extends Activity {
         int exercise_total = cursor.getInt(cursor.getColumnIndex("num_exercise_total"));
         dbConnector.close();
 
-        // Normalize totals
-        while (eat_total > 0 && sleep_total > 0 && exercise_total > 0) {
-            eat_total--;
-            sleep_total--;
-            exercise_total--;
-        }
-
-        if (eat_delay == 1) {
+        if(eat_delay==1) {
             Button button_to_delay = eat;
             button_to_delay.setEnabled(false);
             button_to_delay.setBackgroundColor(getResources().getColor(R.color.DarkGray));
@@ -277,6 +279,41 @@ public class ManfredActivity extends Activity {
             exerciseDelayTimer.setButton(button_to_delay);
             exerciseDelayTimer.start();
         }
+    }
+
+    public void createSound() {
+        int sound = mPrefs.getInt("action_sound", 0);
+        if(sound==1) {
+            mEatSoundID = mSounds.load(ManfredActivity.this, R.raw.eat_sound, 2);
+            mSounds.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId,
+                                           int status) {
+                    mSounds.play(mEatSoundID, 1, 1, 1, 0, 1);
+                }
+            });
+        }
+        else if(sound==2) {
+            mSleepSoundID = mSounds.load(ManfredActivity.this, R.raw.sleep_sound, 2);
+            mSounds.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId,
+                                           int status) {
+                    mSounds.play(mSleepSoundID, 1, 1, 1, 0, 1);
+                }
+            });
+        }
+        else if(sound==3){
+            mExerciseSoundID = mSounds.load(ManfredActivity.this, R.raw.exercise_sound, 2);
+            mSounds.setOnLoadCompleteListener(new SoundPool.OnLoadCompleteListener() {
+                @Override
+                public void onLoadComplete(SoundPool soundPool, int sampleId,
+                                           int status) {
+                    mSounds.play(mExerciseSoundID, 1, 1, 1, 0, 1);
+                }
+            });
+        }
+        mPrefs.edit().putInt("action_sound", 0).commit();
     }
 
     public class MyCountDownTimer extends CountDownTimer {
