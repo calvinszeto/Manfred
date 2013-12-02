@@ -77,15 +77,13 @@ five major levels:
 
 ### Gameplay
 * Add the instructional overlay (Harish)
-* Add stat requirements to actions and action buttons (Calvin)
 * Change the action layout to fill the screen width and be scrollable (Calvin)
 * Add body changes after each major event (Calvin)
 
 ### The Game Engine
-* Add a level attribute to a save in the database (Harish)
-* Add counts for actions in the database (Harish)
 * Update Action#getActions to only return actions for the current level or down (Calvin)
 * Add the rest of the actions (Harish/Calvin)
+* Add special stuff for the end game (Calvin)
 
 ### General Android (Probably won't do any of this)
 * Check that all lifetime cycle stuff is handled (Medium)
