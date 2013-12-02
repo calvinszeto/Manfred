@@ -1,18 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/action_wrapper"
-        android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:clickable="false"
-        android:focusable="false"
-        android:background="@color/button_blue" />
+    <TextView
+        style="@style/ActionTheme"
+        android:id="@+id/action_name"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp" />
 
-</LinearLayout>
+    <LinearLayout
+        android:layout_below="@+id/action_name"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="4">
+
+        <TextView
+            style="@style/ActionTheme"
+            android:id="@+id/required_weight"
+            android:textSize="10dp"
+            android:layout_width="match_parent"
+            android:layout_below="@+id/action_name"
+            android:layout_height="20dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/ActionTheme"
+            android:id="@+id/required_vo2_max"
+            android:textSize="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/ActionTheme"
+            android:id="@+id/required_squat"
+            android:textSize="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_weight="1" />
+
+        <TextView
+            style="@style/ActionTheme"
+            android:id="@+id/required_body_fat"
+            android:textSize="10dp"
+            android:layout_width="fill_parent"
+            android:layout_height="20dp"
+            android:layout_weight="1" />
+    </LinearLayout>
+</RelativeLayout>

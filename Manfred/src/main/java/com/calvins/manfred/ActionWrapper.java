@@ -1,5 +1,7 @@
 package com.calvins.manfred;
 
+import android.util.Log;
+
 /**
  * Created by puppyplus on 11/3/13.
  */
@@ -17,9 +19,12 @@ public class ActionWrapper {
     public ActionWrapper(String name, String event, boolean major, int level,
         String stat_changes, String stat_requirements, String category) {
         this.name = name;
-        this.category = category;
-        this.level = level;
         this.event = event;
+        this.major = major;
+        this.level = level;
+        this.stat_changes = stat_changes;
+        this.stat_requirements = stat_requirements;
+        this.category = category;
     }
 
     public String getName() {
@@ -72,7 +77,7 @@ public class ActionWrapper {
         int[] requirements = new int[4];
         String[] stat_requirements = this.stat_requirements.split("/");
         for(int i=0; i < 4; i++) {
-            requirements[i] = Integer.parseInt(stat_requirements[i].substring(1));
+            requirements[i] = stat_requirements[i].equals("0") ? 0 : Integer.parseInt(stat_requirements[i].substring(1));
         }
         return requirements;
     }

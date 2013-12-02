@@ -43,7 +43,7 @@ public class Action {
         } finally {
             in.close();
         }
-        resetActionsLocked(context, save_id);
+        updateActionsLocked(context, save_id);
     }
 
     /**
@@ -83,34 +83,7 @@ public class Action {
     }
 
     /**
-     * Pull the user's lock/unlock code from the database and set the ActionWrapper accordingly
-     *
-     * @param context
-     * @param save_id
-     */
-    private static void resetActionsLocked(Context context, int save_id) {
-        final DatabaseConnector dbConnector = new DatabaseConnector(context);
-        dbConnector.open();
-        Cursor currentActions = dbConnector.getActions(save_id);
-        currentActions.moveToFirst();
-        // current values for eat, exercise & sleep, they determine what actions can & can't be seen
-        int action_eat_num = currentActions.getInt(currentActions.getColumnIndex("action_eat_num"));
-        int action_exercise_num = currentActions.getInt(currentActions.getColumnIndex("action_exercise_num"));
-        int action_sleep_num = currentActions.getInt(currentActions.getColumnIndex("action_sleep_num"));
-        for (int i = 0; i < eat_actions.size(); i++) {
-            eat_actions.get(i).setUnlocked(((action_eat_num >> i) & 1) == 0);
-        }
-        for (int i = 0; i < exercise_actions.size(); i++) {
-            exercise_actions.get(i).setUnlocked(((action_exercise_num >> i) & 1) == 0);
-        }
-        for (int i = 0; i < sleep_actions.size(); i++) {
-            sleep_actions.get(i).setUnlocked(((action_sleep_num >> i) & 1) == 0);
-        }
-        dbConnector.close();
-    }
-
-    /**
-     * Calculate the user's locked/unlocked actions and update the codes in the database accordingly
+     * Calculate the user's locked/unlocked actions
      *
      * @param context
      * @param save_id
@@ -119,15 +92,8 @@ public class Action {
         // Database junk
         final DatabaseConnector dbConnector = new DatabaseConnector(context);
         dbConnector.open();
-        Cursor currentActions = dbConnector.getActions(save_id);
-        currentActions.moveToFirst();
         Cursor currentStats = dbConnector.getStats(save_id);
         currentStats.moveToFirst();
-
-        // current values for eat, exercise & sleep
-        int action_eat_num = currentActions.getInt(currentActions.getColumnIndex("action_eat_num"));
-        int action_exercise_num = currentActions.getInt(currentActions.getColumnIndex("action_exercise_num"));
-        int action_sleep_num = currentActions.getInt(currentActions.getColumnIndex("action_sleep_num"));
 
         // current stat values for this Manfred
         int weight = currentStats.getInt(currentStats.getColumnIndex("weight"));
@@ -135,15 +101,16 @@ public class Action {
         int squat = currentStats.getInt(currentStats.getColumnIndex("squat"));
         int body_fat = currentStats.getInt(currentStats.getColumnIndex("body_fat"));
 
+        dbConnector.close();
+
         for (int i = 0; i < eat_actions.size(); i++) {
             ActionWrapper action = eat_actions.get(i);
             int[] stat_requirements = action.getStat_requirements();
-            if ((weight == stat_requirements[0] || stat_requirements[0] == 0) &&
-                    (vo2_max == stat_requirements[1] || stat_requirements[1] == 0) &&
-                    (squat == stat_requirements[2] || stat_requirements[2] == 0) &&
-                    (body_fat == stat_requirements[3] || stat_requirements[3] == 0)){
+            if ((weight <= stat_requirements[0] || stat_requirements[0] == 0) &&
+                    (vo2_max <= stat_requirements[1] || stat_requirements[1] == 0) &&
+                    (squat <= stat_requirements[2] || stat_requirements[2] == 0) &&
+                    (body_fat <= stat_requirements[3] || stat_requirements[3] == 0)){
                 eat_actions.get(i).setUnlocked(true);
-                action_eat_num = action_eat_num | 1 << i;
             } else {
                 eat_actions.get(i).setUnlocked(false);
             }
@@ -151,12 +118,11 @@ public class Action {
         for (int i = 0; i < exercise_actions.size(); i++) {
             ActionWrapper action = exercise_actions.get(i);
             int[] stat_requirements = action.getStat_requirements();
-            if ((weight == stat_requirements[0] || stat_requirements[0] == 0) &&
-                    (vo2_max == stat_requirements[1] || stat_requirements[1] == 0) &&
-                    (squat == stat_requirements[2] || stat_requirements[2] == 0) &&
-                    (body_fat == stat_requirements[3] || stat_requirements[3] == 0)){
+            if ((weight <= stat_requirements[0] || stat_requirements[0] == 0) &&
+                    (vo2_max <= stat_requirements[1] || stat_requirements[1] == 0) &&
+                    (squat <= stat_requirements[2] || stat_requirements[2] == 0) &&
+                    (body_fat <= stat_requirements[3] || stat_requirements[3] == 0)){
                 exercise_actions.get(i).setUnlocked(true);
-                action_exercise_num = action_exercise_num | 1 << i;
             } else {
                 exercise_actions.get(i).setUnlocked(false);
             }
@@ -164,18 +130,15 @@ public class Action {
         for (int i = 0; i < sleep_actions.size(); i++) {
             ActionWrapper action = sleep_actions.get(i);
             int[] stat_requirements = action.getStat_requirements();
-            if ((weight == stat_requirements[0] || stat_requirements[0] == 0) &&
-                    (vo2_max == stat_requirements[1] || stat_requirements[1] == 0) &&
-                    (squat == stat_requirements[2] || stat_requirements[2] == 0) &&
-                    (body_fat == stat_requirements[3] || stat_requirements[3] == 0)){
+            if ((weight <= stat_requirements[0] || stat_requirements[0] == 0) &&
+                    (vo2_max <= stat_requirements[1] || stat_requirements[1] == 0) &&
+                    (squat <= stat_requirements[2] || stat_requirements[2] == 0) &&
+                    (body_fat <= stat_requirements[3] || stat_requirements[3] == 0)){
                 sleep_actions.get(i).setUnlocked(true);
-                action_sleep_num = action_sleep_num | 1 << i;
             } else {
                 sleep_actions.get(i).setUnlocked(false);
             }
         }
-        dbConnector.addAction(save_id, action_eat_num, action_sleep_num, action_exercise_num);
-        dbConnector.close();
     }
 
     /**
@@ -204,11 +167,10 @@ public class Action {
      * @param context
      */
     public static void applyAction(int action_id, String category, int save_id, DatabaseConnector dbConnector, Context context) {
+        Log.d(ManfredActivity.TAG, "applyAction called.");
         ActionWrapper action = getActions(category).get(action_id);
 
         dbConnector.open();
-        Cursor currentActions = dbConnector.getActions(save_id);
-        currentActions.moveToFirst();
         Cursor currentStats = dbConnector.getStats(save_id);
         currentStats.moveToFirst();
 
