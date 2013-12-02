@@ -54,8 +54,13 @@ public class ActionWrapper {
         this.level = level;
     }
 
-    public String getStat_changes() {
-        return stat_changes;
+    public int[] getStat_changes() {
+        int[] changes = new int[4];
+        String[] stat_changes = this.stat_changes.split("/");
+        for(int i=0; i < 4; i++) {
+           changes[i] = Integer.parseInt(stat_changes[i]);
+        }
+        return changes;
     }
 
     public void setStat_changes(String stat_changes) {

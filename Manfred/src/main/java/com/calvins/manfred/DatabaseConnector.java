@@ -48,20 +48,17 @@ public class DatabaseConnector {
 
         ContentValues newManfredActions = new ContentValues();
         newManfredActions.put("_id",id);
-        newManfredActions.put("action_eat_num", 3);
-        newManfredActions.put("action_sleep_num", 3);
-        newManfredActions.put("action_exercise_num", 3);
-        newManfredActions.put("num_healthy_actions", 0);
-        newManfredActions.put("num_unhealthy_actions", 0);
+        newManfredActions.put("action_eat_num", 0);
+        newManfredActions.put("action_sleep_num", 0);
+        newManfredActions.put("action_exercise_num", 0);
         database.insert("actions",null,newManfredActions);
 
         ContentValues newManfredStats = new ContentValues();
         newManfredStats.put("_id",id);
         newManfredStats.put("weight",136);
-        newManfredStats.put("cholesterol",140);
-        newManfredStats.put("bench_press",145);
-        newManfredStats.put("deadlift",120);
+        newManfredStats.put("vo2_max",42);
         newManfredStats.put("squat",95);
+        newManfredStats.put("body_fat",15);
         database.insert("stats",null,newManfredStats);
 
         Log.d(TAG, "Inserted manfred instance to all tables with _id = "+id);
@@ -87,7 +84,7 @@ public class DatabaseConnector {
     //Returns stats for Manfred instance
     public Cursor getStats(int _id) {
         String id = _id+"";
-        return database.query("stats", new String[]{"weight", "cholesterol", "bench_press", "deadlift", "squat"},
+        return database.query("stats", new String[]{"weight", "vo2_max", "squat", "body_fat"},
                 "_id = ?", new String[]{id}, null, null, null);
     }
 
@@ -101,30 +98,16 @@ public class DatabaseConnector {
     //Returns actions of this Manfred instance
     public Cursor getActions(int _id) {
         String id = _id+"";
-        return database.query("actions", new String[]{"action_eat_num", "action_sleep_num", "action_exercise_num", "num_healthy_actions", "num_unhealthy_actions"},
+        return database.query("actions", new String[]{"action_eat_num", "action_sleep_num", "action_exercise_num"},
                 "_id = ?", new String[]{id}, null, null, null);
     }
 
-    //Updates Manfred instance to reflect a healthy action click
-    public void addHealthyAction(int _id, int eat, int sleep, int exercise, int healthy) {
+    //Updates Manfred instance to reflect an action click
+    public void addAction(int _id, int eat, int sleep, int exercise) {
         ContentValues editAction = new ContentValues();
         editAction.put("action_eat_num", eat);
         editAction.put("action_sleep_num", sleep);
         editAction.put("action_exercise_num", exercise);
-        editAction.put("num_healthy_actions", healthy);
-
-        open();
-        database.update("actions", editAction, "_id="+_id, null);
-        close();
-    }
-
-    //Updates Manfred instance to reflect an unhealthy action click
-    public void addUnhealthyAction(int _id, int eat, int sleep, int exercise, int unhealthy) {
-        ContentValues editAction = new ContentValues();
-        editAction.put("action_eat_num", eat);
-        editAction.put("action_sleep_num", sleep);
-        editAction.put("action_exercise_num", exercise);
-        editAction.put("num_unhealthy_actions", unhealthy);
 
         open();
         database.update("actions", editAction, "_id="+_id, null);
@@ -132,13 +115,12 @@ public class DatabaseConnector {
     }
 
     //Updates Manfred instance stats to reflect an action choice
-    public void updateStatsForAction(int _id, int w, int c, int b, int d, int s) {
+    public void updateStatsForAction(int _id, int w, int v, int s, int b) {
         ContentValues editStats = new ContentValues();
         editStats.put("weight", w);
-        editStats.put("cholesterol", c);
-        editStats.put("bench_press", b);
-        editStats.put("deadlift", d);
+        editStats.put("vo2_max", v);
         editStats.put("squat", s);
+        editStats.put("body_fat", b);
 
         open();
         database.update("stats", editStats, "_id="+_id, null);
@@ -182,17 +164,14 @@ public class DatabaseConnector {
                     "action_eat_num INTEGER, "+
                     "action_sleep_num INTEGER, "+
                     "action_exercise_num INTEGER, "+
-                    "num_healthy_actions INTEGER, "+
-                    "num_unhealthy_actions INTEGER, "+
                     "FOREIGN KEY(_id) REFERENCES manfred(_id));";
 
             String createStats = "CREATE TABLE stats"+
                     "(_id INTEGER PRIMARY KEY, "+
                     "weight INTEGER, "+
-                    "cholesterol INTEGER, "+
-                    "bench_press INTEGER, "+
-                    "deadlift INTEGER, "+
+                    "vo2_max INTEGER, "+
                     "squat INTEGER, "+
+                    "body_fat INTEGER, "+
                     "FOREIGN KEY(_id) REFERENCES manfred(_id));";
 
             db.execSQL(createManfred);
