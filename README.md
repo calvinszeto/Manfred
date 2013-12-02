@@ -80,7 +80,7 @@ five major levels:
 
 ### The Game Engine
 * Add the rest of the actions (Harish/Calvin)
-* Add special stuff for the end game (Calvin)
+* Add special stuff for the end game (Probably won't do this)
 
 ### General Android (Probably won't do any of this)
 * Check that all lifetime cycle stuff is handled (Medium)
