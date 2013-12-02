@@ -105,11 +105,7 @@ public class Action {
 
         for (int i = 0; i < eat_actions.size(); i++) {
             ActionWrapper action = eat_actions.get(i);
-            int[] stat_requirements = action.getStat_requirements();
-            if ((weight <= stat_requirements[0] || stat_requirements[0] == 0) &&
-                    (vo2_max <= stat_requirements[1] || stat_requirements[1] == 0) &&
-                    (squat <= stat_requirements[2] || stat_requirements[2] == 0) &&
-                    (body_fat <= stat_requirements[3] || stat_requirements[3] == 0)){
+            if (action.meetsRequirements(weight, vo2_max, squat, body_fat)) {
                 eat_actions.get(i).setUnlocked(true);
             } else {
                 eat_actions.get(i).setUnlocked(false);
@@ -117,11 +113,7 @@ public class Action {
         }
         for (int i = 0; i < exercise_actions.size(); i++) {
             ActionWrapper action = exercise_actions.get(i);
-            int[] stat_requirements = action.getStat_requirements();
-            if ((weight <= stat_requirements[0] || stat_requirements[0] == 0) &&
-                    (vo2_max <= stat_requirements[1] || stat_requirements[1] == 0) &&
-                    (squat <= stat_requirements[2] || stat_requirements[2] == 0) &&
-                    (body_fat <= stat_requirements[3] || stat_requirements[3] == 0)){
+            if (action.meetsRequirements(weight, vo2_max, squat, body_fat)) {
                 exercise_actions.get(i).setUnlocked(true);
             } else {
                 exercise_actions.get(i).setUnlocked(false);
@@ -129,11 +121,7 @@ public class Action {
         }
         for (int i = 0; i < sleep_actions.size(); i++) {
             ActionWrapper action = sleep_actions.get(i);
-            int[] stat_requirements = action.getStat_requirements();
-            if ((weight <= stat_requirements[0] || stat_requirements[0] == 0) &&
-                    (vo2_max <= stat_requirements[1] || stat_requirements[1] == 0) &&
-                    (squat <= stat_requirements[2] || stat_requirements[2] == 0) &&
-                    (body_fat <= stat_requirements[3] || stat_requirements[3] == 0)){
+            if (action.meetsRequirements(weight, vo2_max, squat, body_fat)) {
                 sleep_actions.get(i).setUnlocked(true);
             } else {
                 sleep_actions.get(i).setUnlocked(false);

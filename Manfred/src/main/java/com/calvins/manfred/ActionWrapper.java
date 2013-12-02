@@ -17,7 +17,7 @@ public class ActionWrapper {
     private boolean unlocked;
 
     public ActionWrapper(String name, String event, boolean major, int level,
-        String stat_changes, String stat_requirements, String category) {
+                         String stat_changes, String stat_requirements, String category) {
         this.name = name;
         this.event = event;
         this.major = major;
@@ -62,8 +62,8 @@ public class ActionWrapper {
     public int[] getStat_changes() {
         int[] changes = new int[4];
         String[] stat_changes = this.stat_changes.split("/");
-        for(int i=0; i < 4; i++) {
-           changes[i] = Integer.parseInt(stat_changes[i]);
+        for (int i = 0; i < 4; i++) {
+            changes[i] = Integer.parseInt(stat_changes[i]);
         }
         return changes;
     }
@@ -72,14 +72,37 @@ public class ActionWrapper {
         this.stat_changes = stat_changes;
     }
 
+    /*
+    public String getStat_requirements() {
+        return stat_requirements;
+    }
+    */
+
     public int[] getStat_requirements() {
-        // TODO: add less/greater
         int[] requirements = new int[4];
         String[] stat_requirements = this.stat_requirements.split("/");
-        for(int i=0; i < 4; i++) {
-            requirements[i] = stat_requirements[i].equals("0") ? 0 : Integer.parseInt(stat_requirements[i].substring(1));
+        for (int i = 0; i < 4; i++) {
+            requirements[i] = (stat_requirements[i].equals("0") ? 0 :
+                    Integer.parseInt(stat_requirements[i].substring(1)));
         }
         return requirements;
+    }
+
+    public boolean meetsRequirements(int weight, int vo2_max, int squat, int body_fat) {
+        String[] reqs = stat_requirements.split("/");
+        boolean meetsWeight = (reqs[0].equals("0") ? true :
+                (reqs[0].substring(0, 1).equals("g") ? weight >= Integer.parseInt(reqs[0].substring(1)) :
+                        weight <= Integer.parseInt(reqs[0].substring(1))));
+        boolean meetsVo2Max= (reqs[1].equals("0") ? true :
+                (reqs[1].substring(0, 1).equals("g") ? vo2_max >= Integer.parseInt(reqs[1].substring(1)) :
+                        vo2_max <= Integer.parseInt(reqs[1].substring(1))));
+        boolean meetsSquat = (reqs[2].equals("0") ? true :
+                (reqs[2].substring(0, 1).equals("g") ? squat >= Integer.parseInt(reqs[2].substring(1)) :
+                        squat <= Integer.parseInt(reqs[2].substring(1))));
+        boolean meetsBodyFat= (reqs[3].equals("0") ? true :
+                (reqs[3].substring(0, 1).equals("g") ? body_fat >= Integer.parseInt(reqs[3].substring(1)) :
+                        body_fat <= Integer.parseInt(reqs[3].substring(1))));
+        return meetsBodyFat && meetsSquat && meetsVo2Max && meetsWeight;
     }
 
     public void setStat_requirements(String stat_requirements) {

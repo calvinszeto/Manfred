@@ -69,13 +69,6 @@ public class ManfredActivity extends Activity {
 
         setContentView(R.layout.activity_manfred);
 
-        // Set Manfred image
-        DatabaseConnector dbc = new DatabaseConnector(this);
-        dbc.open();
-        int level = dbc.getCurrentLevel(save_id);
-        ImageView imageView = (ImageView) findViewById(R.id.manfred_image);
-        imageView.setImageResource(getResources().getIdentifier("manfred" + level, "drawable", getPackageName()));
-
         eatDelayTimer = new MyCountDownTimer(3000, 1000);
         sleepDelayTimer = new MyCountDownTimer(3000, 1000);
         exerciseDelayTimer = new MyCountDownTimer(3000, 1000);
@@ -126,6 +119,14 @@ public class ManfredActivity extends Activity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        // Set Manfred image
+        DatabaseConnector dbc = new DatabaseConnector(this);
+        dbc.open();
+        int level = dbc.getCurrentLevel(save_id);
+        ImageView imageView = (ImageView) findViewById(R.id.manfred_image);
+        imageView.setImageResource(getResources().getIdentifier("manfred" + level, "drawable", getPackageName()));
+        dbc.close();
 
         // Grab all saved delays
         eat_delay = mPrefs.getInt("eat_delay", 0);

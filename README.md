@@ -77,12 +77,9 @@ five major levels:
 
 ### Gameplay
 * Add the instructional overlay (Harish)
-* Add body changes after each major event (Calvin)
-* Fix logs so actions can have multi-line events
 
 ### The Game Engine
 * Update Action#getActions to only return actions for the current level or down (Calvin)
-* Add major action check stuff (Calvin)
 * Add the rest of the actions (Harish/Calvin)
 * Add special stuff for the end game (Calvin)
 
