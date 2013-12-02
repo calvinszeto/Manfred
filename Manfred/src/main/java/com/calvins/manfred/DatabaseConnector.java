@@ -46,13 +46,6 @@ public class DatabaseConnector {
         newManfred.put("name",name);
         int id = (int)database.insert("manfred", null, newManfred);
 
-        ContentValues newManfredActions = new ContentValues();
-        newManfredActions.put("_id",id);
-        newManfredActions.put("action_eat_num", 3);
-        newManfredActions.put("action_sleep_num", 3);
-        newManfredActions.put("action_exercise_num", 3);
-        database.insert("actions",null,newManfredActions);
-
         ContentValues newManfredStats = new ContentValues();
         newManfredStats.put("_id",id);
         newManfredStats.put("weight",160);
@@ -93,25 +86,6 @@ public class DatabaseConnector {
         String id = _id+"";
         return database.query("manfred", new String[]{"name"},
                 "_id = ?", new String[]{id}, null, null, null);
-    }
-
-    //Returns actions of this Manfred instance
-    public Cursor getActions(int _id) {
-        String id = _id+"";
-        return database.query("actions", new String[]{"action_eat_num", "action_sleep_num", "action_exercise_num"},
-                "_id = ?", new String[]{id}, null, null, null);
-    }
-
-    //Updates Manfred instance to reflect an action click
-    public void addAction(int _id, int eat, int sleep, int exercise) {
-        ContentValues editAction = new ContentValues();
-        editAction.put("action_eat_num", eat);
-        editAction.put("action_sleep_num", sleep);
-        editAction.put("action_exercise_num", exercise);
-
-        open();
-        database.update("actions", editAction, "_id="+_id, null);
-        close();
     }
 
     //Updates Manfred instance stats to reflect an action choice
@@ -159,13 +133,6 @@ public class DatabaseConnector {
                     "dateModified TEXT, "+
                     "name TEXT);";
 
-            String createActions = "CREATE TABLE actions" +
-                    "(_id INTEGER PRIMARY KEY, "+
-                    "action_eat_num INTEGER, "+
-                    "action_sleep_num INTEGER, "+
-                    "action_exercise_num INTEGER, "+
-                    "FOREIGN KEY(_id) REFERENCES manfred(_id));";
-
             String createStats = "CREATE TABLE stats"+
                     "(_id INTEGER PRIMARY KEY, "+
                     "weight INTEGER, "+
@@ -175,7 +142,6 @@ public class DatabaseConnector {
                     "FOREIGN KEY(_id) REFERENCES manfred(_id));";
 
             db.execSQL(createManfred);
-            db.execSQL(createActions);
             db.execSQL(createStats);
         }
 
