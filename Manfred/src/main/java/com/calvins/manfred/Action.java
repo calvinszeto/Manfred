@@ -135,14 +135,49 @@ public class Action {
      * @param category
      * @return
      */
-    public static ArrayList<ActionWrapper> getActions(String category) {
+    public static ArrayList<ActionWrapper> getActions(String category, int save_id, DatabaseConnector dbConnector) {
+        // Get current level
+        dbConnector.open();
+        int level = dbConnector.getCurrentLevel(save_id);
+        dbConnector.close();
+
+        ArrayList<ActionWrapper> actionSet;
+        ArrayList<ActionWrapper> returnSet = new ArrayList<ActionWrapper>();
         if (category.equals("eat")) {
-            return eat_actions;
+            actionSet = eat_actions;
         } else if (category.equals("exercise")) {
-            return exercise_actions;
+            actionSet = exercise_actions;
         } else {
-            return sleep_actions;
+            actionSet = sleep_actions;
         }
+
+        // Remove all actions that shouldn't be seen yet or are on the wrong path
+        for(ActionWrapper action: actionSet) {
+            if(action.isMajor()) {
+                if(level < 5) {
+                    if(action.getLevel() == level - 1)
+                        returnSet.add(action);
+                } else if(level > 5) {
+                    if(action.getLevel() == level + 1)
+                        returnSet.add(action);
+                } else {
+                    if(action.getLevel() <= 6 && action.getLevel() >= 4)
+                        returnSet.add(action);
+                }
+            } else {
+                if(level < 5) {
+                   if(action.getLevel() >= level && action.getLevel() <= 5)
+                       returnSet.add(action);
+                } else if(level > 5) {
+                    if(action.getLevel() <= level && action.getLevel() >= 5)
+                        returnSet.add(action);
+                } else {
+                    if(action.getLevel() == 5)
+                        returnSet.add(action);
+                }
+            }
+        }
+        return returnSet;
     }
 
     /**
@@ -156,7 +191,7 @@ public class Action {
      */
     public static void applyAction(int action_id, String category, int save_id, DatabaseConnector dbConnector, Context context) {
         Log.d(ManfredActivity.TAG, "applyAction called.");
-        ActionWrapper action = getActions(category).get(action_id);
+        ActionWrapper action = getActions(category, save_id, dbConnector).get(action_id);
 
         dbConnector.open();
         Cursor currentStats = dbConnector.getStats(save_id);
@@ -203,4 +238,5 @@ public class Action {
             Log.d(ManfredActivity.TAG, "applyAction: " + e.getMessage());
         }
     }
+
 }
