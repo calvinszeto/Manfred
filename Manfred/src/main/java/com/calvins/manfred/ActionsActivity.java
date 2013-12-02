@@ -3,6 +3,7 @@ package com.calvins.manfred;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -24,12 +25,14 @@ import java.util.ArrayList;
 public class ActionsActivity extends Activity {
 
     public static final String TAG = "ActionsActivity";
+    public SharedPreferences mPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_actions);
 
+        mPrefs = this.getSharedPreferences("com.calvins.manfred",Context.MODE_PRIVATE);
         Intent intent = getIntent();
         final String category = intent.getStringExtra("category");
         final int save_id = (int) intent.getIntExtra("_id", 0);
@@ -43,6 +46,12 @@ public class ActionsActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
                 Action.applyAction((int) id, category, save_id, dbConnector, activity);
+                if(category.equals("eat"))
+                    mPrefs.edit().putInt("eat_delay",1).commit();
+                else if(category.equals("sleep"))
+                    mPrefs.edit().putInt("sleep_delay",1).commit();
+                else
+                    mPrefs.edit().putInt("exercise_delay",1).commit();
                 finish();
             }
         });
