@@ -67,8 +67,13 @@ public class ActionWrapper {
         this.stat_changes = stat_changes;
     }
 
-    public String getStat_requirements() {
-        return stat_requirements;
+    public int[] getStat_requirements() {
+        int[] requirements = new int[4];
+        String[] stat_requirements = this.stat_requirements.split("/");
+        for(int i=0; i < 4; i++) {
+            requirements[i] = Integer.parseInt(stat_requirements[i]);
+        }
+        return requirements;
     }
 
     public void setStat_requirements(String stat_requirements) {

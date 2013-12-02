@@ -88,6 +88,7 @@ five major levels:
 * Remove the counts from the save in the database and add counts for actions instead (Harish)
 * Update the Action#setActionLocked to consider level and stat_requirements (Calvin)
 * Update Action#applyAction to use the new stat_changes attribute (Calvin)
+* Update Action#getActions to only return actions for the current level or down (Calvin)
 * Add the rest of the actions (Harish/Calvin)
 
 ### General Android (Probably won't do any of this)

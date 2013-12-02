@@ -35,7 +35,7 @@
         android:textStyle="bold"/>
 
     <TextView
-        android:id="@+id/detail_cholesterol"
+        android:id="@+id/detail_vo2_max"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:layout_below="@+id/detail_weight"
@@ -44,28 +44,19 @@
         android:layout_marginTop="5dp"/>
 
     <TextView
-        android:id="@+id/detail_bench"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/detail_cholesterol"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginTop="5dp"/>
-
-    <TextView
-        android:id="@+id/detail_deadlift"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent"
-        android:layout_below="@+id/detail_bench"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:layout_marginTop="5dp"/>
-
-    <TextView
         android:id="@+id/detail_squat"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_below="@+id/detail_deadlift"
+        android:layout_below="@+id/detail_vo2_max"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"/>
+
+    <TextView
+        android:id="@+id/detail_body_fat"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/detail_squat"
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginTop="5dp"/>

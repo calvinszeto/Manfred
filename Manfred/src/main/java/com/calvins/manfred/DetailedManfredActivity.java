@@ -38,24 +38,21 @@ public class DetailedManfredActivity extends Activity {
 
         String name = nameCursor.getString(nameCursor.getColumnIndex("name"));
         String weight = "Weight: "+statsCursor.getString(statsCursor.getColumnIndex("weight"))+" lb";
-        String cholesterol = "Cholesterol: "+statsCursor.getString(statsCursor.getColumnIndex("cholesterol"))+" mg/dL";
-        String bench_press = "Bench Press: "+statsCursor.getString(statsCursor.getColumnIndex("bench_press"))+" lb";
-        String deadlift = "Deadlift: "+statsCursor.getString(statsCursor.getColumnIndex("deadlift"))+" lb";
+        String vo2_max = "VO2-Max: "+statsCursor.getString(statsCursor.getColumnIndex("vo2_max"))+" ml/kg/min";
         String squat = "Squat: "+statsCursor.getString(statsCursor.getColumnIndex("squat"))+" lb";
+        String body_fat = "Body Fat Percentage: "+statsCursor.getString(statsCursor.getColumnIndex("body_fat"))+" %";
 
         TextView n = (TextView)findViewById(R.id.detail_screen_header);
         TextView w = (TextView)findViewById(R.id.detail_weight);
-        TextView c = (TextView)findViewById(R.id.detail_cholesterol);
-        TextView b = (TextView)findViewById(R.id.detail_bench);
-        TextView d = (TextView)findViewById(R.id.detail_deadlift);
+        TextView v = (TextView)findViewById(R.id.detail_vo2_max);
         TextView s = (TextView)findViewById(R.id.detail_squat);
+        TextView b = (TextView)findViewById(R.id.detail_body_fat);
 
         n.setText(name);
         w.setText(weight);
-        c.setText(cholesterol);
-        b.setText(bench_press);
-        d.setText(deadlift);
+        v.setText(vo2_max);
         s.setText(squat);
+        b.setText(body_fat);
 
         nameCursor.close();
         statsCursor.close();
