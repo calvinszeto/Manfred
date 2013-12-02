@@ -57,7 +57,7 @@ five major levels:
     begun. Fit Manfred hoards supplies and runs home. Fat Manfred heads home, gets tired, and joins
     a bunch of people hiding out in a homeless shelter.
     Fit Major Event: Build an armory
-    Fat Major Event: Join the revolutionaries
+    Fat Major Event: Join the revolutionakies
 4. Preparation: Fit Manfred builds an armory and starts training to be an assassin; he wants to be
     able to live like he used to. Fat Manfred joins the revolutionary group and preaches for peace
     and rebuilding.
@@ -75,23 +75,23 @@ five major levels:
 
 ## Todos (Priority)
 
-### General Android
-* Check that all lifetime cycle stuff is handled (Medium)
-* Add a home link to the Manfred screen (Low)
-* Add action category fragment to action item layout (Low)
-
 ### Gameplay
 * Change the stats to the new stats
 * Add delays to the events (High)
-* Add the instructional overlay (Medium)
+* Add the instructional overlay (High)
 * Add stat requirements to actions and action buttons (High)
 * Change the action layout to fill the screen width and be scrollable (High)
 * Add body changes after each major event (High)
 
 ### The Game Engine
 * Add a level attribute to a save in the database
-* Remove the counts from the save in the database
+* Remove the counts from the save in the database and add counts for actions instead
 * Update the Action#setActionLocked to consider level and stat_requirements
 * Update Action#applyAction to use the new stat_changes attribute
 * Add the rest of the actions (High)
-* Add habitual events (Low)
+
+### General Android (Probably won't do any of this)
+* Check that all lifetime cycle stuff is handled (Medium)
+* Add a home link to the Manfred screen (Low)
+* Add action category fragment to action item layout (Low)
+
