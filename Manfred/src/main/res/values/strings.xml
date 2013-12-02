@@ -29,5 +29,9 @@
     <string name="enter_name_message">Enter name here.</string>
     <string name="detail_screen_logo">Manfred</string>
     <string name="your_current_manfred">Your current Manfred picture</string>
+    <string name="actions_description">OPEN THESE MENUS TO CHOOSE WHAT MANFRED DOES NEXT.</string>
+    <string name="manfred_description">TOUCH MANFRED TO SEE STATS ON HIS CURRENT HEALTH.</string>
+    <string name="log_description">KEEP UP WITH MANFRED HERE. TOUCH THE ARROW TO VIEW THE FULL LOG.</string>
+    <string name="start_playing">START PLAYING</string>
 
 </resources>

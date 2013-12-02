@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.view.Gravity;
 import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,8 +16,11 @@ import android.util.Log;
 import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 import java.io.IOException;
 
@@ -27,6 +31,10 @@ public class ManfredActivity extends Activity {
 
     public static final String TAG = "ManfredActivity";
     private int save_id;
+
+    // variables to deal with instructional popup
+    private PopupWindow instruct_popup;
+    private PopupWindow dim;
 
     private SharedPreferences mPrefs;
     private DatabaseConnector dbConnector;
@@ -45,12 +53,13 @@ public class ManfredActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_manfred);
+
         dbConnector = new DatabaseConnector(ManfredActivity.this);
         mPrefs = this.getSharedPreferences("com.calvins.manfred", Context.MODE_PRIVATE);
 
         Intent intent = getIntent();
         save_id = ((Long) intent.getLongExtra("_id", 0)).intValue();
-
         Log.d(ManfredActivity.TAG, "ManfredActivity - save_id is " + save_id);
 
         try {
@@ -67,17 +76,56 @@ public class ManfredActivity extends Activity {
             Log.d(TAG, "ManfredActivity: " + e.toString());
         }
 
-        setContentView(R.layout.activity_manfred);
+        eatDelayTimer = new MyCountDownTimer(3000,1000);
+        sleepDelayTimer = new MyCountDownTimer(3000,1000);
+        exerciseDelayTimer = new MyCountDownTimer(3000,1000);
 
-        eatDelayTimer = new MyCountDownTimer(3000, 1000);
-        sleepDelayTimer = new MyCountDownTimer(3000, 1000);
-        exerciseDelayTimer = new MyCountDownTimer(3000, 1000);
+        eat = (Button)findViewById(R.id.eat_button);
+        sleep = (Button)findViewById(R.id.sleep_button);
+        exercise = (Button)findViewById(R.id.exercise_button);
 
-        eat = (Button) findViewById(R.id.eat_button);
-        sleep = (Button) findViewById(R.id.sleep_button);
-        exercise = (Button) findViewById(R.id.exercise_button);
+        // instructional overlay code
+        int overlay_instructions = intent.getIntExtra("put_instructions",0);
+        if(overlay_instructions==1) {
+            findViewById(R.id.container).post(new Runnable() {
+                public void run() {
+                    dim = dimBackground();
+                    initiateInstructionWindow();
+                }
+            });
+        }
     }
 
+    private PopupWindow dimBackground() {
+        LayoutInflater inflater = (LayoutInflater) ManfredActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.fadepopup,
+                (ViewGroup) findViewById(R.id.fadePopup));
+        PopupWindow fadePopup = new PopupWindow(layout, 0, 0, false);
+        fadePopup.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
+        fadePopup.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+        fadePopup.showAtLocation(layout, Gravity.NO_GRAVITY, 0, 0);
+        return fadePopup;
+    }
+
+    private void initiateInstructionWindow() {
+        try{
+            LayoutInflater inflater = (LayoutInflater)ManfredActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View layout = inflater.inflate(R.layout.instruction_overlay,null);
+
+            instruct_popup = new PopupWindow(layout,0,0,true);
+            instruct_popup.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
+            instruct_popup.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+            instruct_popup.showAtLocation(this.findViewById(R.id.container), Gravity.CENTER,0,0);
+
+            //btnClosePopup = (Button)layout.findViewById(R.id.popup_back);
+            //btnClosePopup.setOnClickListener(back_button_click_listener);
+            //btnPlayManfred = (Button)layout.findViewById(R.id.popup_play);
+            //btnPlayManfred.setOnClickListener(play_button_click_listener);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -128,6 +176,14 @@ public class ManfredActivity extends Activity {
         ImageView imageView = (ImageView) findViewById(R.id.manfred_image);
         imageView.setImageResource(getResources().getIdentifier("manfred" + level, "drawable", getPackageName()));
         dbc.close();
+        if(dim!=null)
+            dim.dismiss();
+        if(instruct_popup!=null)
+            instruct_popup.dismiss();
+
+        eat_delay = mPrefs.getInt("eat_delay",0);
+        sleep_delay = mPrefs.getInt("sleep_delay",0);
+        exercise_delay = mPrefs.getInt("exercise_delay",0);
 
         // Grab all saved delays
         eat_delay = mPrefs.getInt("eat_delay", 0);
@@ -281,6 +337,11 @@ public class ManfredActivity extends Activity {
             View rootView = inflater.inflate(R.layout.fragment_manfred, container, false);
             return rootView;
         }
+    }
+
+    public void finishInstruction(View view) {
+        instruct_popup.dismiss();
+        dim.dismiss();
     }
 
     public void eatButtonClicked(View view) {

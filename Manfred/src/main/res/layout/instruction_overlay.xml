@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:id="@+id/instruction_overlay"
+    android:background="@android:color/transparent">
+
+    <TextView
+        android:id="@+id/dummy_button"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:layout_marginRight="10dp" />
+
+    <ImageView
+        android:id="@+id/up_arrow"
+        android:layout_width="40dp"
+        android:layout_height="80dp"
+        android:src="@drawable/up_arrow"
+        android:paddingTop="25dp"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/dummy_button"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/actions_info"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:text="@string/actions_description"
+        android:textColor="@color/White"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp"
+        android:layout_alignBottom="@+id/up_arrow"
+        android:layout_alignRight="@+id/down_arrow"
+        android:layout_toRightOf="@+id/up_arrow" />
+
+    <ImageView
+        android:id="@+id/left_arrow"
+        android:layout_width="40dp"
+        android:layout_height="80dp"
+        android:src="@drawable/left_arrow"
+        android:paddingTop="25dp"
+        android:layout_marginTop="78dp"
+        android:layout_below="@+id/actions_info"
+        android:layout_alignRight="@+id/actions_info" />
+
+    <TextView
+        android:id="@+id/manfred_info"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:text="@string/manfred_description"
+        android:textColor="@color/White"
+        android:textStyle="bold"
+        android:layout_marginRight="10dp"
+        android:layout_alignBottom="@+id/down_arrow"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/down_arrow" />
+
+    <ImageView
+        android:id="@+id/down_arrow"
+        android:layout_width="40dp"
+        android:layout_height="80dp"
+        android:src="@drawable/down_arrow"
+        android:paddingTop="25dp"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:id="@+id/log_info"
+        android:layout_width="115dp"
+        android:layout_height="50dp"
+        android:text="@string/log_description"
+        android:textColor="@color/White"
+        android:textStyle="bold"
+        android:layout_below="@+id/left_arrow"
+        android:layout_toRightOf="@+id/up_arrow"
+        android:layout_alignRight="@+id/left_arrow" />
+
+    <Button
+        android:id="@+id/instruction_done"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:background="@color/button_blue"
+        android:text="@string/start_playing"
+        android:onClick="finishInstruction"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/manfred_info" />
+
+</RelativeLayout>
