@@ -98,13 +98,13 @@ public class Action {
         int action_exercise_num = currentActions.getInt(currentActions.getColumnIndex("action_exercise_num"));
         int action_sleep_num = currentActions.getInt(currentActions.getColumnIndex("action_sleep_num"));
         for (int i = 0; i < eat_actions.size(); i++) {
-            eat_actions.get(i).setUnlocked(((action_eat_num >> i) & 1) == 0);
+            eat_actions.get(i).setUnlocked(((action_eat_num >> i) & 1) == 1);
         }
         for (int i = 0; i < exercise_actions.size(); i++) {
-            exercise_actions.get(i).setUnlocked(((action_exercise_num >> i) & 1) == 0);
+            exercise_actions.get(i).setUnlocked(((action_exercise_num >> i) & 1) == 1);
         }
         for (int i = 0; i < sleep_actions.size(); i++) {
-            sleep_actions.get(i).setUnlocked(((action_sleep_num >> i) & 1) == 0);
+            sleep_actions.get(i).setUnlocked(((action_sleep_num >> i) & 1) == 1);
         }
         dbConnector.close();
     }

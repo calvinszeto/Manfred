@@ -12,4 +12,12 @@
         <item name="android:textColorSecondary">@color/Gray</item>
     </style>
 
+    <!-- Theme for action buttons. -->
+    <style name="ActionTheme" parent="Theme.AppCompat">
+        <!-- List of attributes here: http://developer.android.com/reference/android/R.attr.html -->
+        <item name="android:textColor">@color/White</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
 </resources>
