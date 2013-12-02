@@ -10,14 +10,14 @@
             Weight/VO2-max/Squat/Body-Fat
             e.g. "10/-2/-5/3"
         stat_requirements = Stat requirements to unlock this Action
-            stats are slash-delimited and in order:
+            stats are slash-delimited, in order, prepended with a l for less, g for greater:
             Weight/VO2-max/Squat/Body-Fat
-            e.g. "200/40/140/20"
+            e.g. "g200/l40/l140/g20"
         category = The category of Action
         /-->
     <!-- Fit Path, Level 1-->
     <action
-        name=""
+        name="Eat a grilled chicken"
         event=""
         major="false"
         level="1"
@@ -25,14 +25,14 @@
         stat_requirements=""
         category="Eat"/>
     <action
-        name=""
+        name="Drink a protein shake"
         event=""
         major="false"
         level="1"
         stat_changes=""
         stat_requirements=""
         category="Eat"/>
-    <action
+    <!-- action
         name=""
         event=""
         major="false"
@@ -47,9 +47,9 @@
         level="1"
         stat_changes=""
         stat_requirements=""
-        category="Sleep"/>
+        category="Sleep"/-->
     <action
-        name=""
+        name="Do 100 pushups"
         event=""
         major="false"
         level="1"
@@ -57,7 +57,7 @@
         stat_requirements=""
         category="Exercise"/>
     <action
-        name=""
+        name="Run a mile"
         event=""
         major="false"
         level="1"
@@ -70,11 +70,11 @@
         major="true"
         level="1"
         stat_changes=""
-        stat_requirements=""
+        stat_requirements="l142/g50/g150/l13"
         category="Exercise"/>
     <!-- Fat Path, Level 1-->
     <action
-        name=""
+        name="Eat some fried chicken"
         event=""
         major="false"
         level="1"
@@ -82,7 +82,7 @@
         stat_requirements=""
         category="Eat"/>
     <action
-        name=""
+        name="Drink a milkshake"
         event=""
         major="false"
         level="1"
@@ -127,11 +127,11 @@
         major="true"
         level="1"
         stat_changes=""
-        stat_requirements=""
+        stat_requirements="g180/l37/l85/g20"
         category="Exercise"/>
     <!-- Fit Path, Level 2-->
     <action
-        name=""
+        name="Eat a lean steak"
         event=""
         major="false"
         level="2"
@@ -139,7 +139,7 @@
         stat_requirements=""
         category="Eat"/>
     <action
-        name=""
+        name="Eat a head of lettuce"
         event=""
         major="false"
         level="2"
@@ -163,7 +163,7 @@
         stat_requirements=""
         category="Sleep"/>
     <action
-        name=""
+        name="Run some sprints"
         event=""
         major="false"
         level="2"
@@ -171,7 +171,7 @@
         stat_requirements=""
         category="Exercise"/>
     <action
-        name=""
+        name="Go to the gym"
         event=""
         major="false"
         level="2"
@@ -184,11 +184,11 @@
         major="true"
         level="2"
         stat_changes=""
-        stat_requirements=""
+        stat_requirements="g165/g66/g300/l9"
         category="Exercise"/>
     <!-- Fat Path, Level 2-->
     <action
-        name=""
+        name="Eat a Big Mac"
         event=""
         major="false"
         level="2"
@@ -196,7 +196,7 @@
         stat_requirements=""
         category="Eat"/>
     <action
-        name=""
+        name="Eat a dozen donuts"
         event=""
         major="false"
         level="2"
@@ -241,11 +241,11 @@
         major="true"
         level="2"
         stat_changes=""
-        stat_requirements=""
+        stat_requirements="g210/l25/l65/g27"
         category="Exercise"/>
     <!-- Fit Path, Level 3-->
     <action
-        name=""
+        name="Eat a box of broccoli"
         event=""
         major="false"
         level="3"
@@ -253,7 +253,7 @@
         stat_requirements=""
         category="Eat"/>
     <action
-        name=""
+        name="Take some creatine"
         event=""
         major="false"
         level="3"
@@ -277,7 +277,7 @@
         stat_requirements=""
         category="Sleep"/>
     <action
-        name=""
+        name="Flip a tire"
         event=""
         major="false"
         level="3"
@@ -285,7 +285,7 @@
         stat_requirements=""
         category="Exercise"/>
     <action
-        name=""
+        name="Do the Russian squat routine"
         event=""
         major="false"
         level="3"
@@ -298,11 +298,11 @@
         major="true"
         level="3"
         stat_changes=""
-        stat_requirements=""
+        stat_requirements="g200/g100/g100/l4"
         category="Exercise"/>
     <!-- Fat Path, Level 3-->
     <action
-        name=""
+        name="Eat some Spam"
         event=""
         major="false"
         level="3"
@@ -310,7 +310,7 @@
         stat_requirements=""
         category="Eat"/>
     <action
-        name=""
+        name="Eat that pork butt"
         event=""
         major="false"
         level="3"
@@ -355,11 +355,11 @@
         major="true"
         level="3"
         stat_changes=""
-        stat_requirements=""
+        stat_requirements="g250/l10/l40/g35"
         category="Exercise"/>
     <!-- Fit Path, Level 4-->
     <action
-        name=""
+        name="Eat some crickets"
         event=""
         major="false"
         level="4"
@@ -367,7 +367,7 @@
         stat_requirements=""
         category="Eat"/>
     <action
-        name=""
+        name="Drink a vegetable drink"
         event=""
         major="false"
         level="4"
@@ -391,7 +391,7 @@
         stat_requirements=""
         category="Sleep"/>
     <action
-        name=""
+        name="Flip a car"
         event=""
         major="false"
         level="4"
@@ -399,7 +399,7 @@
         stat_requirements=""
         category="Exercise"/>
     <action
-        name=""
+        name="Crush some steel"
         event=""
         major="false"
         level="4"
@@ -411,12 +411,12 @@
         event=""
         major="true"
         level="4"
-        stat_changes="0/0/0"
-        stat_requirements=""
+        stat_changes="0/0/0/0"
+        stat_requirements="l180/g200/g4000/l0"
         category="Exercise"/>
     <!-- Fat Path, Level 4-->
     <action
-        name=""
+        name="Eat a very old Big Mac"
         event=""
         major="false"
         level="4"
@@ -424,7 +424,7 @@
         stat_requirements=""
         category="Eat"/>
     <action
-        name=""
+        name="Eat some Crisco soup"
         event=""
         major="false"
         level="4"
@@ -468,7 +468,7 @@
         event=""
         major="true"
         level="4"
-        stat_changes="0/0/0"
-        stat_requirements=""
+        stat_changes="0/0/0/0"
+        stat_requirements="g1000/g20/l20/g60"
         category="Exercise"/>
 </actions>

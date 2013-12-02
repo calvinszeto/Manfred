@@ -68,10 +68,11 @@ public class ActionWrapper {
     }
 
     public int[] getStat_requirements() {
+        // TODO: add less/greater
         int[] requirements = new int[4];
         String[] stat_requirements = this.stat_requirements.split("/");
         for(int i=0; i < 4; i++) {
-            requirements[i] = Integer.parseInt(stat_requirements[i]);
+            requirements[i] = Integer.parseInt(stat_requirements[i].substring(1));
         }
         return requirements;
     }

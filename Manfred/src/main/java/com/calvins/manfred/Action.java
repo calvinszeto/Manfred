@@ -71,9 +71,9 @@ public class Action {
                         parser.getAttributeValue(null, "stat_changes"),
                         parser.getAttributeValue(null, "stat_requirements"),
                         category);
-                if (category.equals("eat")) {
+                if (category.equals("Eat")) {
                     eat_actions.add(action);
-                } else if (category.equals("exercise")) {
+                } else if (category.equals("Exercise")) {
                     exercise_actions.add(action);
                 } else {
                     sleep_actions.add(action);
@@ -220,10 +220,17 @@ public class Action {
 
         int[] stat_changes = action.getStat_changes();
 
+        // Update the stats with the stat_changes
         weight += stat_changes[0];
         vo2_max += stat_changes[1];
         squat += stat_changes[2];
         body_fat += stat_changes[3];
+        // Set any stats that are below zero to zero
+        weight = weight < 0 ? 0 : weight;
+        vo2_max = vo2_max < 0 ? 0 : vo2_max;
+        squat = squat < 0 ? 0 : squat;
+        body_fat = body_fat < 0 ? 0 : body_fat;
+
         dbConnector.updateStatsForAction(save_id, weight, vo2_max, squat, body_fat);
 
         //enter new time modified for this Manfred instance

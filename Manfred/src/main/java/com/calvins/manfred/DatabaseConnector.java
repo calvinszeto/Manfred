@@ -48,14 +48,14 @@ public class DatabaseConnector {
 
         ContentValues newManfredActions = new ContentValues();
         newManfredActions.put("_id",id);
-        newManfredActions.put("action_eat_num", 0);
-        newManfredActions.put("action_sleep_num", 0);
-        newManfredActions.put("action_exercise_num", 0);
+        newManfredActions.put("action_eat_num", 3);
+        newManfredActions.put("action_sleep_num", 3);
+        newManfredActions.put("action_exercise_num", 3);
         database.insert("actions",null,newManfredActions);
 
         ContentValues newManfredStats = new ContentValues();
         newManfredStats.put("_id",id);
-        newManfredStats.put("weight",136);
+        newManfredStats.put("weight",160);
         newManfredStats.put("vo2_max",42);
         newManfredStats.put("squat",95);
         newManfredStats.put("body_fat",15);
