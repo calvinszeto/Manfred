@@ -201,6 +201,7 @@ public class SavesScreenActivity extends ListActivity {
                 //now start the manfred activity with this new instance
                 Intent startManfredGame = new Intent(SavesScreenActivity.this, ManfredActivity.class);
                 startManfredGame.putExtra("_id",_id);
+                startManfredGame.putExtra("put_instructions",1);
                 startActivity(startManfredGame);
             }
         }
