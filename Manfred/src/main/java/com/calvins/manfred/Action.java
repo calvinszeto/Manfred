@@ -140,56 +140,25 @@ public class Action {
         Cursor currentStats = dbConnector.getStats(save_id);
         currentStats.moveToFirst();
 
-        // current values for eat, exercise & sleep, they determine what actions can & can't be seen
+        // current values for eat, exercise & sleep, they determine the delay
         int action_eat_num = currentActions.getInt(currentActions.getColumnIndex("action_eat_num"));
         int action_sleep_num = currentActions.getInt(currentActions.getColumnIndex("action_sleep_num"));
         int action_exercise_num = currentActions.getInt(currentActions.getColumnIndex("action_exercise_num"));
 
-        // current values for number of unhealthy & healthy actions
-        int num_healthy_actions = currentActions.getInt(currentActions.getColumnIndex("num_healthy_actions"));
-        int num_unhealthy_actions = currentActions.getInt(currentActions.getColumnIndex("num_unhealthy_actions"));
-
         // current stat values for this Manfred
         int weight = currentStats.getInt(currentStats.getColumnIndex("weight"));
-        int cholesterol = currentStats.getInt(currentStats.getColumnIndex("cholesterol"));
-        int bench_press = currentStats.getInt(currentStats.getColumnIndex("bench_press"));
-        int deadlift = currentStats.getInt(currentStats.getColumnIndex("deadlift"));
+        int vo2_max = currentStats.getInt(currentStats.getColumnIndex("vo2_max"));
         int squat = currentStats.getInt(currentStats.getColumnIndex("squat"));
+        int body_fat = currentStats.getInt(currentStats.getColumnIndex("body_fat"));
 
-        if (true) {//(action.getPath().equals("healthy")) {
-            // TODO: See comment below
+        int[] stat_changes = action.getStat_changes();
 
-            /**
-             * Add healthy calculations here to determine action_eat_num, action_sleep_num or action_exercise_num
-             * Also, default stat changes have been made based on an action, need to be changed
-             */
+        weight += stat_changes[0];
+        vo2_max += stat_changes[1];
+        squat += stat_changes[2];
+        body_fat += stat_changes[3];
+        dbConnector.updateStatsForAction(save_id, weight, vo2_max, squat, body_fat);
 
-            num_healthy_actions += 1;
-            weight -= 1;
-            cholesterol -= 1;
-            bench_press += 2;
-            deadlift += 1;
-            squat += 1;
-            dbConnector.updateStatsForAction(save_id, weight, cholesterol, bench_press, deadlift, squat);
-            dbConnector.addHealthyAction(save_id, action_eat_num, action_sleep_num, action_exercise_num, num_healthy_actions);
-            Log.d(TAG, "num_healthy_actions = " + num_healthy_actions + ", id for Manfred = " + save_id);
-        } else {
-            // TODO: See comment below
-
-            /**
-             * Add unhealthy calculations here to determine action_eat_num, action_sleep_num or action_exercise_num
-             * Also, default stat changes have been made based on an action, need to be changed
-             */
-
-            num_unhealthy_actions += 1;
-            weight += 1;
-            cholesterol += 1;
-            bench_press -= 2;
-            deadlift -= 1;
-            squat -= 1;
-            dbConnector.updateStatsForAction(save_id, weight, cholesterol, bench_press, deadlift, squat);
-            dbConnector.addUnhealthyAction(save_id, action_eat_num, action_sleep_num, action_exercise_num, num_unhealthy_actions);
-        }
         //enter new time modified for this Manfred instance
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
