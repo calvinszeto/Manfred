@@ -199,7 +199,7 @@ public class Action {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         dbConnector.updateCurrentGame(save_id, dateFormat.format(date));
-
+        dbConnector.incrementAction(save_id,category);
         dbConnector.close();
 
         // Recalculate locked/unlocked actions

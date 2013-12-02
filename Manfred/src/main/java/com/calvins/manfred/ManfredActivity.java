@@ -3,6 +3,7 @@ package com.calvins.manfred;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.view.Menu;
@@ -26,6 +27,7 @@ public class ManfredActivity extends Activity {
     private int save_id;
 
     private SharedPreferences mPrefs;
+    private DatabaseConnector dbConnector;
 
     // variables that deal with action delay
     private MyCountDownTimer eatDelayTimer;
@@ -41,9 +43,12 @@ public class ManfredActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        dbConnector = new DatabaseConnector(ManfredActivity.this);
         mPrefs = this.getSharedPreferences("com.calvins.manfred", Context.MODE_PRIVATE);
+
         Intent intent = getIntent();
         save_id = ((Long) intent.getLongExtra("_id", 0)).intValue();
+
         Log.d(ManfredActivity.TAG, "ManfredActivity - save_id is " + save_id);
 
         try {
@@ -62,9 +67,9 @@ public class ManfredActivity extends Activity {
 
         setContentView(R.layout.activity_manfred);
 
-        eatDelayTimer = new MyCountDownTimer(4000,1000);
-        sleepDelayTimer = new MyCountDownTimer(4000,1000);
-        exerciseDelayTimer = new MyCountDownTimer(4000,1000);
+        eatDelayTimer = new MyCountDownTimer(3000,1000);
+        sleepDelayTimer = new MyCountDownTimer(3000,1000);
+        exerciseDelayTimer = new MyCountDownTimer(3000,1000);
 
         eat = (Button)findViewById(R.id.eat_button);
         sleep = (Button)findViewById(R.id.sleep_button);
@@ -117,13 +122,28 @@ public class ManfredActivity extends Activity {
         sleep_delay = mPrefs.getInt("sleep_delay",0);
         exercise_delay = mPrefs.getInt("exercise_delay",0);
 
+        dbConnector.open();
+        Cursor cursor = dbConnector.getTotalNumActions(save_id);
+        cursor.moveToFirst();
+        int eat_total = cursor.getInt(cursor.getColumnIndex("num_eat_total"));
+        int sleep_total = cursor.getInt(cursor.getColumnIndex("num_sleep_total"));
+        int exercise_total = cursor.getInt(cursor.getColumnIndex("num_exercise_total"));
+        dbConnector.close();
+
         if(eat_delay==1) {
             Button button_to_delay = eat;
             button_to_delay.setEnabled(false);
             button_to_delay.setBackgroundColor(getResources().getColor(R.color.DarkGray));
-            long millisUntilDone = mPrefs.getLong("millisUntilEatDone", 4000);
-            if(millisUntilDone==0)
-                millisUntilDone = 4000;
+            long millisUntilDone = mPrefs.getLong("millisUntilEatDone", 3000);
+            if(millisUntilDone==0) {
+                int den = sleep_total+exercise_total;
+                if(eat_total==0)
+                    millisUntilDone = 3000;
+                else if(den==0)
+                    millisUntilDone = (long)Math.ceil(2*eat_total)*3000;
+                else
+                    millisUntilDone = (long)Math.ceil(2*eat_total/den)*3000;
+            }
 
             eatDelayTimer = new MyCountDownTimer(millisUntilDone,1000);
             eatDelayTimer.setButton(button_to_delay);
@@ -133,9 +153,16 @@ public class ManfredActivity extends Activity {
             Button button_to_delay = sleep;
             button_to_delay.setEnabled(false);
             button_to_delay.setBackgroundColor(getResources().getColor(R.color.DarkGray));
-            long millisUntilDone = mPrefs.getLong("millisUntilSleepDone", 4000);
-            if(millisUntilDone==0)
-                millisUntilDone = 4000;
+            long millisUntilDone = mPrefs.getLong("millisUntilSleepDone", 3000);
+            if(millisUntilDone==0) {
+                int den = eat_total+exercise_total;
+                if(sleep_total==0)
+                    millisUntilDone = 3000;
+                else if(den==0)
+                    millisUntilDone = (long)Math.ceil(2*sleep_total)*3000;
+                else
+                    millisUntilDone = (long)Math.ceil(2*sleep_total/den)*3000;
+            }
 
             sleepDelayTimer = new MyCountDownTimer(millisUntilDone,1000);
             sleepDelayTimer.setButton(button_to_delay);
@@ -145,9 +172,16 @@ public class ManfredActivity extends Activity {
             Button button_to_delay = exercise;
             button_to_delay.setEnabled(false);
             button_to_delay.setBackgroundColor(getResources().getColor(R.color.DarkGray));
-            long millisUntilDone = mPrefs.getLong("millisUntilExerciseDone", 4000);
-            if(millisUntilDone==0)
-                millisUntilDone = 4000;
+            long millisUntilDone = mPrefs.getLong("millisUntilExerciseDone", 3000);
+            if(millisUntilDone==0) {
+                int den = eat_total+sleep_total;
+                if(exercise_total==0)
+                    millisUntilDone = 3000;
+                else if(den==0)
+                    millisUntilDone = (long)Math.ceil(2*exercise_total)*3000;
+                else
+                    millisUntilDone = (long)Math.ceil(2*exercise_total/den)*3000;
+            }
 
             exerciseDelayTimer = new MyCountDownTimer(millisUntilDone,1000);
             exerciseDelayTimer.setButton(button_to_delay);
