@@ -77,8 +77,8 @@ five major levels:
 
 ### Gameplay
 * Add the instructional overlay (Harish)
-* Change the action layout to fill the screen width and be scrollable (Calvin)
 * Add body changes after each major event (Calvin)
+* Fix logs so actions can have multi-line events
 
 ### The Game Engine
 * Update Action#getActions to only return actions for the current level or down (Calvin)

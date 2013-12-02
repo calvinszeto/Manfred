@@ -16,6 +16,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import java.io.IOException;
 
@@ -67,6 +68,13 @@ public class ManfredActivity extends Activity {
         }
 
         setContentView(R.layout.activity_manfred);
+
+        // Set Manfred image
+        DatabaseConnector dbc = new DatabaseConnector(this);
+        dbc.open();
+        int level = dbc.getCurrentLevel(save_id);
+        ImageView imageView = (ImageView) findViewById(R.id.manfred_image);
+        imageView.setImageResource(getResources().getIdentifier("manfred" + level, "drawable", getPackageName()));
 
         eatDelayTimer = new MyCountDownTimer(3000, 1000);
         sleepDelayTimer = new MyCountDownTimer(3000, 1000);

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 
 public class DetailedManfredActivity extends Activity {
@@ -22,8 +23,17 @@ public class DetailedManfredActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailed_manfred);
+
         Intent intent = getIntent();
         _id = (int) intent.getIntExtra("_id", 0);
+
+        // Set Manfred image
+        DatabaseConnector dbc = new DatabaseConnector(this);
+        dbc.open();
+        int level = dbc.getCurrentLevel(_id);
+        ImageView imageView = (ImageView) findViewById(R.id.manfred_image);
+        imageView.setImageResource(getResources().getIdentifier("manfred" + level, "drawable", getPackageName()));
+
         setValuesOnScreen();
     }
 

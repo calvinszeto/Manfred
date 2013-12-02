@@ -195,6 +195,11 @@ public class Action {
 
         dbConnector.updateStatsForAction(save_id, weight, vo2_max, squat, body_fat);
 
+        if(action.isMajor()) {
+            // Change the level
+            dbConnector.updateCurrentLevel(save_id, action.getLevel());
+        }
+
         //enter new time modified for this Manfred instance
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();

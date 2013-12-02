@@ -20,15 +20,15 @@
         name="Eat a grilled chicken"
         event="Manfred grills up a chicken and devours it."
         major="false"
-        level="1"
+        level="5"
         stat_changes="-2/0/0/0"
         stat_requirements="0/0/0/0"
         category="Eat"/>
     <action
         name="Drink a protein shake"
-        event="Manfred blends up a protein shake and drinks it.\n Tastes like strawberries"
+        event="Manfred blends up a protein shake and drinks it. Tastes like strawberries"
         major="false"
-        level="1"
+        level="5"
         stat_changes="1/0/15/-1"
         stat_requirements="l150/g48/0/0"
         category="Eat"/>
@@ -36,7 +36,7 @@
         name="Sleep for 8 hours"
         event="Manfred goes to bed for a few hours."
         major="false"
-        level="1"
+        level="5"
         stat_changes="0/0/0/0"
         stat_requirements="0/0/0/0"
         category="Sleep"/>
@@ -44,7 +44,7 @@
         name="Take a 20 minute nap"
         event="Manfred takes a quick snooze."
         major="false"
-        level="1"
+        level="5"
         stat_changes="0/2/0/0"
         stat_requirements="g150/0/0/0"
         category="Sleep"/>
@@ -52,7 +52,7 @@
         name="Do 100 pushups"
         event="Manfred does a hundred pushups."
         major="false"
-        level="1"
+        level="5"
         stat_changes="-5/0/0/0"
         stat_requirements="0/0/0/0"
         category="Exercise"/>
@@ -60,15 +60,15 @@
         name="Run a mile"
         event="Manfred jogs a mile."
         major="false"
-        level="1"
-        stat_changes="0/-2/5/0"
+        level="5"
+        stat_changes="0/2/5/0"
         stat_requirements="l150/0/0/0"
         category="Exercise"/>
     <action
         name="Run a Marathon"
         event=""
         major="true"
-        level="1"
+        level="4"
         stat_changes="0/0/0/0"
         stat_requirements="l142/g50/g150/l13"
         category="Exercise"/>
@@ -77,7 +77,7 @@
         name="Eat some fried chicken"
         event="Manfred eats some delicious fried chicken."
         major="false"
-        level="1"
+        level="5"
         stat_changes="2/0/0/0"
         stat_requirements="0/0/0/0"
         category="Eat"/>
@@ -85,7 +85,7 @@
         name="Drink a milkshake"
         event="Manfred downs a creamy strawberry milkshake."
         major="false"
-        level="1"
+        level="5"
         stat_changes="3/0/0/1"
         stat_requirements="g150/0/0/0"
         category="Eat"/>
@@ -93,7 +93,7 @@
         name=""
         event=""
         major="false"
-        level="1"
+        level="5"
         stat_changes=""
         stat_requirements=""
         category="Sleep"/>
@@ -101,7 +101,7 @@
         name=""
         event=""
         major="false"
-        level="1"
+        level="5"
         stat_changes=""
         stat_requirements=""
         category="Sleep"/-->
@@ -109,7 +109,7 @@
         name="Warm up the couch"
         event="Manfred gets comfortable in his chair."
         major="false"
-        level="1"
+        level="5"
         stat_changes="0/-1/0/0"
         stat_requirements="0/0/0/0"
         category="Exercise"/>
@@ -117,7 +117,7 @@
         name="Grab the laptop"
         event="Manfred opens up his laptop and browses some forums."
         major="false"
-        level="1"
+        level="5"
         stat_changes="0/0/-2/0"
         stat_requirements="0/l40/0/0"
         category="Exercise"/>
@@ -125,7 +125,7 @@
         name="Walk to the BBQ Festival"
         event=""
         major="true"
-        level="1"
+        level="6"
         stat_changes="0/0/0/0"
         stat_requirements="g180/l37/l85/g20"
         category="Exercise"/>

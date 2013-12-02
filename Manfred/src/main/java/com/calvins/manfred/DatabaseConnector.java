@@ -51,7 +51,7 @@ public class DatabaseConnector {
         newManfredActions.put("num_eat_total", 0);
         newManfredActions.put("num_sleep_total", 0);
         newManfredActions.put("num_exercise_total", 0);
-        newManfredActions.put("current_action_level", 1);
+        newManfredActions.put("current_action_level", 5);
         database.insert("actions",null,newManfredActions);
 
         ContentValues newManfredStats = new ContentValues();
