@@ -15,6 +15,7 @@
         android:theme="@style/ManfredTheme" >
         <activity
             android:name="com.calvins.manfred.HomeActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_home" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,16 +23,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.calvins.manfred.SavesScreenActivity" />
-        <activity android:name="com.calvins.manfred.ManfredActivity" />
-        <activity android:name="com.calvins.manfred.SettingsActivity" />
-        <activity android:name="com.calvins.manfred.DetailedManfredActivity" />
+        <activity android:name="com.calvins.manfred.SavesScreenActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.calvins.manfred.ManfredActivity"
+        android:screenOrientation="portrait"/>
+        <activity android:name="com.calvins.manfred.SettingsActivity"
+        android:screenOrientation="portrait"/>
+        <activity android:name="com.calvins.manfred.DetailedManfredActivity"
+        android:screenOrientation="portrait"/>
         <activity
             android:name="com.calvins.manfred.ActionsActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_actions" >
         </activity>
         <activity
             android:name="com.calvins.manfred.LogActivity"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_log" >
         </activity>
     </application>
