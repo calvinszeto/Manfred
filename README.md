@@ -76,19 +76,19 @@ five major levels:
 ## Todos (Priority)
 
 ### Gameplay
-* Change the stats to the new stats
-* Add delays to the events (High)
-* Add the instructional overlay (High)
-* Add stat requirements to actions and action buttons (High)
-* Change the action layout to fill the screen width and be scrollable (High)
-* Add body changes after each major event (High)
+* Change the stats to the new stats (Harish)
+* Add delays to the events (Harish)
+* Add the instructional overlay (Harish)
+* Add stat requirements to actions and action buttons (Calvin)
+* Change the action layout to fill the screen width and be scrollable (Calvin)
+* Add body changes after each major event (Calvin)
 
 ### The Game Engine
-* Add a level attribute to a save in the database
-* Remove the counts from the save in the database and add counts for actions instead
-* Update the Action#setActionLocked to consider level and stat_requirements
-* Update Action#applyAction to use the new stat_changes attribute
-* Add the rest of the actions (High)
+* Add a level attribute to a save in the database (Harish)
+* Remove the counts from the save in the database and add counts for actions instead (Harish)
+* Update the Action#setActionLocked to consider level and stat_requirements (Calvin)
+* Update Action#applyAction to use the new stat_changes attribute (Calvin)
+* Add the rest of the actions (Harish/Calvin)
 
 ### General Android (Probably won't do any of this)
 * Check that all lifetime cycle stuff is handled (Medium)
