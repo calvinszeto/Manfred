@@ -14,7 +14,7 @@
         android:id="@+id/manfred_image"
         android:layout_width="256dp"
         android:layout_height="256dp"
-        android:src="@drawable/manfred1"
+        android:src="@drawable/manfred5"
         android:layout_centerHorizontal="true"
         android:onClick="manfredClicked" />
 

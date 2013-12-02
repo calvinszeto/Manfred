@@ -47,6 +47,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginRight="6dip"
-        android:src="@drawable/manfred1" />
+        android:src="@drawable/manfred5" />
 
 </RelativeLayout> 

@@ -82,6 +82,7 @@ five major levels:
 
 ### The Game Engine
 * Update Action#getActions to only return actions for the current level or down (Calvin)
+* Add major action check stuff (Calvin)
 * Add the rest of the actions (Harish/Calvin)
 * Add special stuff for the end game (Calvin)
 
