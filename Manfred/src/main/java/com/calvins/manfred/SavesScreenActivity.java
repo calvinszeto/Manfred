@@ -1,5 +1,6 @@
 package com.calvins.manfred;
 
+import android.app.Dialog;
 import android.app.ListActivity;
 import android.content.Context;
 import android.database.Cursor;
@@ -13,6 +14,7 @@ import android.content.Intent;
 import android.view.View;
 import android.util.Log;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -37,6 +39,7 @@ public class SavesScreenActivity extends ListActivity {
     Button btnClosePopup;
     Button btnPlayManfred;
     private PopupWindow popupWindow;
+    private PopupWindow dim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,19 +63,33 @@ public class SavesScreenActivity extends ListActivity {
         relCreatePopup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                dim = dimBackground();
                 initiatePopupWindow();
             }
         });
+    }
+
+    private PopupWindow dimBackground() {
+        LayoutInflater inflater = (LayoutInflater) SavesScreenActivity.this
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        final View layout = inflater.inflate(R.layout.fadepopup,
+                (ViewGroup) findViewById(R.id.fadePopup));
+        PopupWindow fadePopup = new PopupWindow(layout, 0, 0, false);
+        fadePopup.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
+        fadePopup.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+        fadePopup.showAtLocation(layout, Gravity.NO_GRAVITY, 0, 0);
+        return fadePopup;
     }
 
     private void initiatePopupWindow() {
         try{
             LayoutInflater inflater = (LayoutInflater)SavesScreenActivity.this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View layout = inflater.inflate(R.layout.popup_new_game,null);
+
             popupWindow = new PopupWindow(layout,0,0,true);
             popupWindow.setWidth(WindowManager.LayoutParams.WRAP_CONTENT);
             popupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-            popupWindow.showAtLocation(layout, Gravity.CENTER,0,0);
+            popupWindow.showAtLocation(this.findViewById(R.id.saves_screen), Gravity.CENTER,0,0);
 
             btnClosePopup = (Button)layout.findViewById(R.id.popup_back);
             btnClosePopup.setOnClickListener(back_button_click_listener);
@@ -88,6 +105,8 @@ public class SavesScreenActivity extends ListActivity {
         super.onResume();
         if(popupWindow!=null)
             popupWindow.dismiss();
+        if(dim!=null)
+            dim.dismiss();
         new GetManfredsTask().execute((Object[]) null);
     }
 
@@ -158,6 +177,7 @@ public class SavesScreenActivity extends ListActivity {
     private OnClickListener back_button_click_listener = new OnClickListener() {
         @Override
         public void onClick(View view) {
+            dim.dismiss();
             popupWindow.dismiss();
         }
     };

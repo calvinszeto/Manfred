@@ -51,6 +51,10 @@ public class DatabaseConnector {
         newManfredActions.put("action_eat_num", 3);
         newManfredActions.put("action_sleep_num", 3);
         newManfredActions.put("action_exercise_num", 3);
+        newManfredActions.put("num_eat_total", 0);
+        newManfredActions.put("num_sleep_total", 0);
+        newManfredActions.put("num_exercise_total", 0);
+        newManfredActions.put("current_action_level", 1);
         database.insert("actions",null,newManfredActions);
 
         ContentValues newManfredStats = new ContentValues();
@@ -100,6 +104,57 @@ public class DatabaseConnector {
         String id = _id+"";
         return database.query("actions", new String[]{"action_eat_num", "action_sleep_num", "action_exercise_num"},
                 "_id = ?", new String[]{id}, null, null, null);
+    }
+
+    //Returns current level user is on
+    public int getCurrentLevel(int _id) {
+        String id = _id+"";
+        Cursor cursor = database.query("actions", new String[]{"current_action_level"},
+                "_id = ?", new String[]{id}, null, null, null);
+        cursor.moveToFirst();
+        return cursor.getInt(cursor.getColumnIndex("current_action_level"));
+    }
+
+    //Update current level user is on
+    public void updateCurrentLevel(int _id, int new_level) {
+        ContentValues editLevel = new ContentValues();
+        editLevel.put("current_action_level", new_level);
+        open();
+        database.update("actions", editLevel, "_id="+_id, null);
+        close();
+    }
+
+    //Returns total number of actions done in each action category
+    public Cursor getTotalNumActions(int _id) {
+        String id = _id+"";
+        return database.query("actions", new String[]{"num_eat_total", "num_sleep_total", "num_exercise_total"},
+                "_id = ?", new String[]{id}, null, null, null);
+    }
+
+    //Returns total number of actions for a specific category where the String argument is the column name
+    public int getTotalNumAction(int _id, String colName) {
+        String id = _id+"";
+        Cursor cursor = database.query("actions", new String[]{colName},
+                "_id = ?", new String[]{id}, null, null, null);
+        cursor.moveToFirst();
+        return cursor.getInt(cursor.getColumnIndex(colName));
+    }
+
+    //Increments num_*category*_total by 1 depending on what category the action that was just executed was in
+    public void incrementAction(int _id, String category) {
+        String col = "";
+        if(category.toLowerCase().equals("eat"))
+            col = "num_eat_total";
+        else if(category.toLowerCase().equals("sleep"))
+            col = "num_sleep_total";
+        else
+            col = "num_exercise_total";
+        open();
+        int new_val = getTotalNumAction(_id,col)+1;
+        ContentValues editTotalAction = new ContentValues();
+        editTotalAction.put(col, new_val);
+        database.update("actions",editTotalAction,"_id="+_id,null);
+        close();
     }
 
     //Updates Manfred instance to reflect an action click
@@ -164,6 +219,10 @@ public class DatabaseConnector {
                     "action_eat_num INTEGER, "+
                     "action_sleep_num INTEGER, "+
                     "action_exercise_num INTEGER, "+
+                    "num_eat_total INTEGER, "+
+                    "num_sleep_total INTEGER, "+
+                    "num_exercise_total INTEGER, "+
+                    "current_action_level INTEGER, "+
                     "FOREIGN KEY(_id) REFERENCES manfred(_id));";
 
             String createStats = "CREATE TABLE stats"+
